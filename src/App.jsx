@@ -339,7 +339,7 @@ export default function App() {
                 I’m open to CSM roles (Enterprise/Strategic or Scaled) and CS Ops opportunities. Let’s talk about adoption, renewals, and clever growth.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <a href="#" className="rounded-2xl bg-stone-900 px-4 py-2 text-stone-50">Download CV (PDF)</a>
+                <a href="/cv.pdf" className="rounded-2xl bg-stone-900 px-4 py-2 text-stone-50">Download CV (PDF)</a>
                 <a href="mailto:sandra@artisansavant.co.uk" className="rounded-2xl border border-stone-300 px-4 py-2">Email</a>
                 <a href="https://artisansavant.co.uk" target="_blank" rel="noreferrer" className="rounded-2xl border border-stone-300 px-4 py-2">Portfolio</a>
               </div>
