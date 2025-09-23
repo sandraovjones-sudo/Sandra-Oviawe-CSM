@@ -340,7 +340,9 @@ export default function App() {
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a href="/cv.pdf" className="rounded-2xl bg-stone-900 px-4 py-2 text-stone-50">Download CV (PDF)</a>
-                <a href="mailto:sandra.ov.jones@gmail.com" className="rounded-2xl border border-stone-300 px-4 py-2">Email</a>
+                <a aria-label="Email Sandra at sandra.ov.jones@gmail.com"
+   href="mailto:sandra.ov.jones@gmail.com"
+   className="rounded-2xl border border-stone-300 px-4 py-2">Email</a>
                 <a href="https://www.linkedin.com/in/sandraovjones/" target="_blank" rel="noreferrer" className="rounded-2xl border border-stone-300 px-4 py-2">Portfolio</a>
               </div>
             </div>
