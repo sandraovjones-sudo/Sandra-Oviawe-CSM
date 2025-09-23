@@ -38,7 +38,7 @@ export default function App() {
         title: "Incident to Advocacy: BlueJeans × Kingspan",
         tags: ["Renewals", "Telecom", "Enterprise", "Workshops"],
         role: "Customer Success Manager — BlueJeans by Verizon",
-        period: "2019–2021",
+        period: "2022–2024",
         summary:
           "Resolved buffering/audio and Adobe integration issues impacting executive broadcasts; turned a renewal risk into a referenceable advocate.",
         outcomes: [
@@ -54,7 +54,7 @@ export default function App() {
         title: "Value Communication in Regulated Environments",
         tags: ["Healthcare", "Enterprise", "Adoption", "Renewals"],
         role: "Account Management / Customer Insights — Informa | Datamonitor Healthcare",
-        period: "2016–2019",
+        period: "2016–2018",
         summary:
           "Drove usage of healthcare intelligence across pharma & NHS stakeholders with compliant enablement and ROI storytelling.",
         outcomes: [
@@ -70,7 +70,7 @@ export default function App() {
         title: "Founder Lens: CX, Ops & Storytelling at Artisan Savant Floristry",
         tags: ["AI & Scale", "Workshops", "Expansion"],
         role: "Founder — Artisan Savant Floristry (current)",
-        period: "2021–present",
+        period: "2024–present",
         summary:
           "Built repeatable playbooks for subscriptions, seasonal launches, and UGC content — transferable to B2B CS motions.",
         outcomes: [
@@ -302,19 +302,19 @@ export default function App() {
             {
               role: "Customer Success Manager",
               org: "BlueJeans by Verizon",
-              when: "2019–2021",
+              when: "2022–2024",
               blurb: "Owned enterprise relationships, led incident‑to‑advocacy motions, and drove renewals/expansion through outcomes‑first enablement.",
             },
             {
               role: "Account Management / Customer Insights",
               org: "Informa | Datamonitor Healthcare",
-              when: "2016–2019",
+              when: "2016–2018",
               blurb: "Supported highly regulated healthcare clients (incl. NHS and pharma) with adoption, ROI storytelling, and executive value communication.",
             },
             {
               role: "Founder & Creative Director",
               org: "Artisan Savant Floristry (current)",
-              when: "2021–present",
+              when: "2024–present",
               blurb: "Built repeatable growth plays, CX operations, and content engines; hands‑on proof I can design systems, not just slides.",
             },
           ].map((e) => (
