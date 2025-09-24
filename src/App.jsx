@@ -3,7 +3,6 @@ import React, { useMemo, useState } from "react";
 export default function App() {
   const [query, setQuery] = useState("");
   const chips = [
-    <CustomerLifecycleTimeline />
     "Onboarding",
     "Adoption",
     "Renewals",
