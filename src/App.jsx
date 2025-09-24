@@ -218,7 +218,6 @@ export default function App() {
         </div>
 
         <div className="mt-6 text-xs text-stone-500">
-          Want a deeper dive? Add more tabs (e.g., ‘Scaled 1→many Academy’, ‘Churn‑risk Play’, ‘Executive QBR’). The component is ready for additional items.
         </div>
       </section>
 
