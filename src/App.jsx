@@ -3,6 +3,7 @@ import React, { useMemo, useState } from "react";
 export default function App() {
   const [query, setQuery] = useState("");
   const chips = [
+    "<a href="#lifecycle">Lifecycle Journey</a>",
     "Onboarding",
     "Adoption",
     "Renewals",
