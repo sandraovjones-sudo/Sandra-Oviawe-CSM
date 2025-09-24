@@ -130,7 +130,7 @@ export default function App() {
                 </a>
               </div>
               <div className="mt-6 text-sm opacity-80">
-                Suffolk, UK • SaaS • Healthcare • Telecom • Enterprise & SMB
+                Suffolk, UK • SaaS • Healthcare • Pharma • Telecom • Enterprise & SMB
               </div>
             </div>
             <div className="md:justify-self-end">
