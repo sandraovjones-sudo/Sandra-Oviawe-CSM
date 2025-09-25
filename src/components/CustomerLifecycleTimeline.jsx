@@ -238,8 +238,7 @@ export default function CustomerLifecycleTimeline() {
             Kickoff & Onboarding → Adoption & Engagement → Renewal & Growth →
             Churn & Offboarding
           </span>
-          . Each playbook is modular and reusable — perfect for presenting as
-          your consulting IP.
+          . Each playbook is modular and reusable.
         </p>
         <Legend />
       </header>
