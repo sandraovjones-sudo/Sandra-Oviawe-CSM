@@ -95,7 +95,33 @@ export default function App() {
         p.role.toLowerCase().includes(q)
     );
   }, [projects, query]);
+// Active section highlighting
+const [activeId, setActiveId] = useState("");
 
+useEffect(() => {
+  const ids = ["projects", "lifecycle", "playbooks", "experience"];
+  const sections = ids
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActiveId(visible.target.id);
+    },
+    {
+      root: null,
+      rootMargin: "0px 0px -40% 0px",
+      threshold: [0.2, 0.4, 0.6, 0.8],
+    }
+  );
+
+  sections.forEach((el) => observer.observe(el));
+  return () => observer.disconnect();
+}, []);
+  
   return (
     <main className="min-h-screen w-full bg-stone-50 text-stone-900">
       {/* HERO */}
@@ -110,28 +136,55 @@ export default function App() {
                 Customer Success Leader who thinks outside the box — and then labels the box, builds a playbook for it, and ships it on time.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <a
-                  href="#projects"
-                  className="rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 hover:opacity-90 transition"
-                >
-                  Explore projects
-                </a>
-                <a
-                  href="#playbooks"
-                  className="rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
-                >
-                  Lifecycle Journey
-                  <a href="#lifecycle" className="rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300">Lifecycle Journey</a>
-                >
-                  Tailored playbooks
-                </a>
-                <a
-                  href="#experience"
-                  className="rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
-                >
-                  Experience
-                </a>
-              </div>
+  <a
+    href="#projects"
+    aria-current={activeId === "projects" ? "page" : undefined}
+    className={
+      activeId === "projects"
+        ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
+        : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
+    }
+  >
+    Explore projects
+  </a>
+
+  <a
+    href="#lifecycle"
+    aria-current={activeId === "lifecycle" ? "page" : undefined}
+    className={
+      activeId === "lifecycle"
+        ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
+        : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
+    }
+  >
+    Lifecycle Journey
+  </a>
+
+  <a
+    href="#playbooks"
+    aria-current={activeId === "playbooks" ? "page" : undefined}
+    className={
+      activeId === "playbooks"
+        ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
+        : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
+    }
+  >
+    Tailored playbooks
+  </a>
+
+  <a
+    href="#experience"
+    aria-current={activeId === "experience" ? "page" : undefined}
+    className={
+      activeId === "experience"
+        ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
+        : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
+    }
+  >
+    Experience
+  </a>
+</div>
+
               <div className="mt-6 text-sm opacity-80">
                 Suffolk, UK • SaaS • Healthcare • Pharma • Telecom • Enterprise & SMB
               </div>
