@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
+import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -219,6 +221,19 @@ export default function App() {
 
         <div className="mt-6 text-xs text-stone-500">
         </div>
+      </section>
+            {/* LIFECYCLE MAP */}
+      <section id="lifecycle" className="mx-auto max-w-6xl px-6 py-10">
+        <div className="mb-6">
+          <h2 className="text-2xl md:text-3xl font-semibold">
+            Customer Lifecycle Journey Map
+          </h2>
+          <p className="mt-2 text-stone-600">
+            Kickoff & Onboarding → Adoption & Engagement → Renewal & Growth → Churn & Offboarding.
+            Modular, reusable playbooks you can present as consulting IP.
+          </p>
+        </div>
+        <CustomerLifecycleTimeline />
       </section>
 
       {/* TAILORED PLAYBOOKS */}
