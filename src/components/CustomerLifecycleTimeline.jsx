@@ -265,7 +265,7 @@ export default function CustomerLifecycleTimeline() {
           </ul>
         </div>
         <p className="text-xs">
-          © {new Date().getFullYear()} Artisan Savant Floristry — Consulting Toolkit
+          © {new Date().getFullYear()} Sandra Oviawe CSM
         </p>
       </footer>
     </main>
