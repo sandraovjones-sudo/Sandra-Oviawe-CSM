@@ -308,7 +308,7 @@ export default function App() {
               role: "Account Management / Customer Insights",
               org: "Informa | Datamonitor Healthcare",
               when: "2016–2018",
-              blurb: "Supported highly regulated healthcare clients (incl. NHS and pharma) with adoption, ROI storytelling, and executive value communication.",
+              blurb: "Supported highly regulated Healthcare clients (incl. Biotec, Medtec and pharma) with adoption, ROI storytelling, and executive value communication.",
             },
             {
               role: "Founder & Creative Director",
