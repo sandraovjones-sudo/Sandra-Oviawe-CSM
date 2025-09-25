@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
 export default function App() {
   const [query, setQuery] = useState("");
