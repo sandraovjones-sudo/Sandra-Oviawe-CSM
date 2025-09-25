@@ -1,5 +1,5 @@
-import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
 import React, { useMemo, useState } from "react";
+import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
 export default function App() {
   const [query, setQuery] = useState("");
   const chips = [
