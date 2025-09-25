@@ -268,6 +268,6 @@ export default function CustomerLifecycleTimeline() {
           © {new Date().getFullYear()} Sandra Oviawe CSM
         </p>
       </footer>
-    </main>
+    </div>
   );
 }
