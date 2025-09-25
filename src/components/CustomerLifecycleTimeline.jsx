@@ -5,35 +5,30 @@ import React from "react";
 // TailwindCSS classes are used for styling. If Tailwind isn't enabled,
 // it will still render but without the fancy styles.
 
-// Palette helpers (works with or without Tailwind)
 const stageStyles = {
   kickoff: {
     bg: "bg-emerald-50",
     ring: "ring-emerald-200",
     title: "text-emerald-800",
     chip: "bg-emerald-100 text-emerald-800",
-    line: "from-emerald-400",
   },
   adoption: {
     bg: "bg-sky-50",
     ring: "ring-sky-200",
     title: "text-sky-800",
     chip: "bg-sky-100 text-sky-800",
-    line: "from-sky-400",
   },
   renewal: {
     bg: "bg-amber-50",
     ring: "ring-amber-200",
     title: "text-amber-800",
     chip: "bg-amber-100 text-amber-900",
-    line: "from-amber-400",
   },
   churn: {
     bg: "bg-stone-50",
     ring: "ring-stone-200",
     title: "text-stone-700",
     chip: "bg-stone-100 text-stone-800",
-    line: "from-stone-400",
   },
 };
 
@@ -67,17 +62,12 @@ const data = [
     key: "renewal",
     label: "Renewal & Growth",
     description: "Secure, expand, and plan budgets with the right stakeholders.",
-    items: [
-      "Budget Planning",
-      "New Contact Engagement",
-      "Renewal Management",
-    ],
+    items: ["Budget Planning", "New Contact Engagement", "Renewal Management"],
   },
   {
     key: "churn",
     label: "Churn & Offboarding (Optional)",
-    description:
-      "If risk isn't mitigated: learn, close well, and feed insights forward.",
+    description: "If risk isn't mitigated: learn, close well, and feed insights forward.",
     items: [
       "Churn Customer Interview (if risk not mitigated)",
       "Churn Customer Offboarding",
@@ -86,7 +76,6 @@ const data = [
 ];
 
 function Icon({ name }) {
-  // Minimal inline icons to avoid external deps
   const size = 20;
   const stroke = 1.7;
   const common = {
@@ -142,6 +131,7 @@ function StageCard({ stage, index }) {
   return (
     <section
       className={`relative flex flex-col gap-4 rounded-2xl p-6 ring-1 ${styles.bg} ${styles.ring}`}
+      style={{ borderColor: "rgba(0,0,0,0.06)" }}
     >
       <div className="flex items-center gap-3">
         <div className="p-2 rounded-xl bg-white/70 shadow-sm">
@@ -158,7 +148,9 @@ function StageCard({ stage, index }) {
             key={i}
             className={`w-full rounded-xl px-3 py-2 text-sm ${styles.chip} border border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]`}
           >
-            <span className="font-medium mr-2 align-middle">{String(i + 1).padStart(2, "0")}.</span>
+            <span className="font-medium mr-2 align-middle">
+              {String(i + 1).padStart(2, "0")}.
+            </span>
             <span className="align-middle">{item}</span>
           </li>
         ))}
@@ -181,7 +173,11 @@ function Legend() {
           key={e.key}
           className={`inline-flex items-center gap-2 rounded-full px-3 py-1 ring-1 ${stageStyles[e.key].bg} ${stageStyles[e.key].ring}`}
         >
-          <span className={`inline-block h-2 w-2 rounded-full ${stageStyles[e.key].title.replace("text-", "bg-")}`}></span>
+          <span
+            className={`inline-block h-2 w-2 rounded-full ${stageStyles[
+              e.key
+            ].title.replace("text-", "bg-")}`}
+          ></span>
           <span className="font-medium text-stone-700">{e.label}</span>
         </div>
       ))}
@@ -237,7 +233,13 @@ export default function CustomerLifecycleTimeline() {
           Customer Lifecycle Journey Map
         </h1>
         <p className="max-w-3xl text-stone-600">
-          A comprehensive lifecycle toolkit covering <span className="font-medium">Kickoff & Onboarding → Adoption & Engagement → Renewal & Growth → Churn & Offboarding</span>. Each playbook is modular and reusable — perfect for presenting as your consulting IP.
+          A comprehensive lifecycle toolkit covering{" "}
+          <span className="font-medium">
+            Kickoff & Onboarding → Adoption & Engagement → Renewal & Growth →
+            Churn & Offboarding
+          </span>
+          . Each playbook is modular and reusable — perfect for presenting as
+          your consulting IP.
         </p>
         <Legend />
       </header>
@@ -255,13 +257,17 @@ export default function CustomerLifecycleTimeline() {
         <div className="rounded-xl bg-white/70 p-4 ring-1 ring-stone-200 shadow-sm">
           <p className="mb-2 font-medium text-stone-800">Presentation Tips</p>
           <ul className="list-disc pl-5 grid gap-1">
-            <li>Place the customer at the centre: <em>“Customer Value Delivered.”</em></li>
+            <li>
+              Place the customer at the centre: <em>“Customer Value Delivered.”</em>
+            </li>
             <li>Use the four stages to anchor 30/60/90 day plans and QBRs.</li>
             <li>Add milestone markers (TTV &lt; 14 days, renewal cycle, sponsor cadence).</li>
             <li>Feed learnings from Churn back into Kickoff to close the loop.</li>
           </ul>
         </div>
-        <p className="text-xs">© {new Date().getFullYear()} Artisan Savant Floristry — Consulting Toolkit</p>
+        <p className="text-xs">
+          © {new Date().getFullYear()} Artisan Savant Floristry — Consulting Toolkit
+        </p>
       </footer>
     </main>
   );
