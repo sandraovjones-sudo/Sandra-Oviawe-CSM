@@ -222,7 +222,7 @@ function InfinityTrack() {
 
 export default function CustomerLifecycleTimeline() {
   return (
-    <main className="mx-auto max-w-6xl px-5 py-10 font-sans">
+    <div className="mx-auto max-w-6xl px-5 py-10 font-sans">
       <header className="mb-8 flex flex-col gap-4">
         <div className="inline-flex items-center gap-2 self-start rounded-full border border-stone-200 bg-white/70 px-3 py-1 text-xs text-stone-600 shadow-sm backdrop-blur">
           <span>Artisan Savant Consulting IP</span>
