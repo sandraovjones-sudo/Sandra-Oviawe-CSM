@@ -178,7 +178,7 @@ export default function App() {
         <div className="mb-6">
           <h2 className="text-2xl md:text-3xl font-semibold">Pop‑out project tabs</h2>
           <p className="mt-2 text-stone-600">
-            Click any tab to expand the case study and see outcomes, artefacts, and the play used. These mirror what an active CSM ships in the real world.
+            Click any tab to expand the case study and see outcomes, artefacts, and the play used.
           </p>
         </div>
 
