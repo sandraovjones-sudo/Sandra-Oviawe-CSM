@@ -120,6 +120,9 @@ export default function App() {
                   href="#playbooks"
                   className="rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
                 >
+                  Lifecycle Journey
+                  <a href="#lifecycle" className="rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300">Lifecycle Journey</a>
+                >
                   Tailored playbooks
                 </a>
                 <a
