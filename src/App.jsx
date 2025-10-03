@@ -32,7 +32,7 @@ export default function App() {
           "Introduced value milestones with health‑scored check‑ins to trigger success plays.",
         ],
         details:
-          "Assets: journey map, value milestones, Success Plan template, health score (leading signals), and a 12‑week adoption play. Shows I can package ‘product + process’ for quick wins.",
+          "Assets: journey map, value milestones, Success Plan template, health score (leading signals), and a 12‑week adoption play. Demonstrates ability to package ‘product + process’ for quick wins.",
       },
       {
         id: "bj-kingspan",
