@@ -64,7 +64,7 @@ export default function App() {
           "Reduced time‑to‑first‑value from 30→10 days via guided pathways.",
         ],
         details:
-          "Artifacts included a regulated‑friendly enablement pack, persona‑based decks, and a renewal pre‑mortem to surface blockers 120 days ahead of schedule.",
+          "Artefacts included a regulated‑friendly enablement pack, persona‑based decks, and a renewal pre‑mortem to surface blockers 120 days ahead of schedule.",
       },
       {
         id: "as-founder-xfn",
@@ -75,7 +75,7 @@ export default function App() {
         summary:
           "Built repeatable playbooks for subscriptions, seasonal launches, and UGC content — transferable to B2B CS motions.",
         outcomes: [
-          "3x launch framework (Tease → Teach → Transact) reusable across releases.",
+          "3‑phase launch framework (Tease → Teach → Transact) reusable across releases.",
           "DIY ‘value card’ method for mapping features to customer jobs & outcomes.",
           "Operational dashboards for fulfilment SLAs & churn‑risk signals.",
         ],
