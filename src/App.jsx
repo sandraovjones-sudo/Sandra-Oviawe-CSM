@@ -134,7 +134,7 @@ useEffect(() => {
                 Sandra Oviawe
               </h1>
               <p className="mt-2 text-lg md:text-xl opacity-90">
-                Customer Success Leader who thinks outside the box — and then labels the box, builds a playbook for it, and ships it on time.
+                Customer Success Leader who thinks beyond boundaries - then maps the territory, builds the blueprint, and delivers excellence.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
   <a
