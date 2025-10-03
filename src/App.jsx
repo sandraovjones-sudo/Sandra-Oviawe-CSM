@@ -266,7 +266,7 @@ useEffect(() => {
                   ))}
                 </ul>
                 <div className="rounded-xl bg-stone-50 p-4 text-stone-700">
-                  <span className="text-[13px] font-medium">Notes & artefacts: </span>
+                  <span className="text-[13px] font-medium">Outcomes, Artefacts & Play: </span>
                   {p.details}
                 </div>
               </div>
