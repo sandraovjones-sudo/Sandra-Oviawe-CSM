@@ -173,6 +173,18 @@ useEffect(() => {
   >
     Tailored playbooks
   </a>
+                
+     <a
+  href="#featured"
+  aria-current={activeId === "featured" ? "page" : undefined}
+  className={
+    activeId === "featured"
+      ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
+      : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
+  }
+>
+  Featured Projects
+</a>       
 
   <a
     href="#experience"
