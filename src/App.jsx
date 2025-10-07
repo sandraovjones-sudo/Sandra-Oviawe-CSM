@@ -59,28 +59,28 @@ export default function App() {
         summary:
           "Drove usage of healthcare intelligence across pharma & NHS stakeholders with compliant enablement and ROI storytelling.",
         outcomes: [
-          "Portfolio ARR influenced: £1.5M+ across global enterprise accounts.",
+          "Portfolio ARR influenced: £2.1M+ across global enterprise accounts.",
           "Built executive ‘Why Now’ briefs: usage heatmaps, time‑to‑insight, and saved analyst hours.",
-          "Reduced time‑to‑first‑value from 30→10 days via guided pathways.",
+          "Reduced time‑to‑first‑value from 30→20 days via guided pathways.",
         ],
         details:
           "Artefacts included a regulated‑friendly enablement pack, persona‑based decks, and a renewal pre‑mortem to surface blockers 120 days ahead of schedule.",
       },
       {
-        id: "as-founder-xfn",
-        title: "Founder Lens: CX, Ops & Storytelling at Artisan Savant Floristry",
-        tags: ["AI & Scale", "Workshops", "Expansion"],
-        role: "Founder — Artisan Savant Floristry (current)",
-        period: "2024–present",
+        id: "Standard Bank",
+        title: "Enterprise Lens: CX, Ops & Growth at Standard Bank & BlueJeans",
+        tags: ["AI & Scale", "Transformation", "Expansion"],
+        role: "Customer Success Manager - Standard Bank • BlueJeans by Verizon (2024)",
+        period: "2022-2024",
         summary:
-          "Built repeatable playbooks for subscriptions, seasonal launches, and UGC content — transferable to B2B CS motions.",
+          "Built repeatable success frameworks for enterprise portfolios, executive programs, and adoption playbooks — transferable across SaaS and financial services.",
         outcomes: [
-          "3‑phase launch framework (Tease → Teach → Transact) reusable across releases.",
-          "DIY ‘value card’ method for mapping features to customer jobs & outcomes.",
-          "Operational dashboards for fulfilment SLAs & churn‑risk signals.",
+          "3-phase engagement model (Kickoff → Adoption → Expansion) applied to £3.2M ARR portfolio at BlueJeans and multi-region client base at Standard Bank.",
+          "‘Value mapping’ frameworks linking product features to business outcomes, influencing renewals and cross-sell opportunities.",
+          "Operational dashboards for health scoring, SLA adherence, and churn-risk signals, driving 97% GRR and 117% NRR at BlueJeans.",
         ],
         details:
-          "Demonstrates product‑led thinking, KPI hygiene, and narrative marketing — the same muscles that power enterprise adoption & expansion.",
+          "Outcomes, Artefacts & Play: Demonstrated product-led adoption, KPI discipline, and executive storytelling — the same muscles that power enterprise growth, retention, and expansion.",
       },
     ],
     []
@@ -284,8 +284,8 @@ useEffect(() => {
             Customer Lifecycle Journey Map
           </h2>
           <p className="mt-2 text-stone-600">
-            "I've developed a comprehensive, customer lifecycle framework spanning Kickoff & Onboarding through Adoption & Engagement to Renewal & Growth,",
-            "with structured playbooks for each stage that serve as reusable consulting IP and enable proactive churn management if risks emerge."
+            I've developed a comprehensive, customer lifecycle framework spanning Kickoff & Onboarding through Adoption & Engagement to Renewal & Growth,
+            with structured playbooks for each stage that serve as reusable consulting IP, enabling proactive churn management if risks emerge.
           </p>
         </div>
         <CustomerLifecycleTimeline />
@@ -380,12 +380,7 @@ useEffect(() => {
               when: "2016–2018",
               blurb: "Supported highly regulated Healthcare clients (incl. Biotec, Medtec and pharma) with adoption, ROI storytelling, and executive value communication.",
             },
-            {
-              role: "Founder & Creative Director",
-              org: "Artisan Savant Floristry (current)",
-              when: "2024–present",
-              blurb: "Built repeatable growth plays, CX operations, and content engines; hands‑on proof I can design systems, not just slides.",
-            },
+
           ].map((e) => (
             <div key={e.org} className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-2">
