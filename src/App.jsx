@@ -340,6 +340,9 @@ useEffect(() => {
         </div>
       </section>
 
+      {/* FEATURED PROJECTS */}
+      <CSShowcase />
+      
       {/* EXPERIENCE */}
       <section id="experience" className="mx-auto max-w-6xl px-6 py-10">
         <h2 className="text-2xl md:text-3xl font-semibold">Experience (abridged)</h2>
