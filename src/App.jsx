@@ -131,7 +131,7 @@ useEffect(() => {
           <div className="grid gap-8 md:grid-cols-[1.4fr,1fr] items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-semibold leading-tight tracking-tight">
-                Sandra Oviawe
+                Sandra Oviawe-Jones
               </h1>
               <p className="mt-2 text-lg md:text-xl opacity-90">
                 Customer Success Leader who thinks beyond boundaries - then maps the territory, builds the blueprint, and delivers excellence.
