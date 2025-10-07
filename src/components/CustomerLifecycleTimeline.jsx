@@ -248,17 +248,6 @@ export default function CustomerLifecycleTimeline() {
       </section>
 
       <footer className="mt-10 grid gap-3 text-sm text-stone-600">
-        <div className="rounded-xl bg-white/70 p-4 ring-1 ring-stone-200 shadow-sm">
-          <p className="mb-2 font-medium text-stone-800">Presentation Tips</p>
-          <ul className="list-disc pl-5 grid gap-1">
-            <li>
-              Place the customer at the centre: <em>“Customer Value Delivered.”</em>
-            </li>
-            <li>Use the four stages to anchor 30/60/90 day plans and QBRs.</li>
-            <li>Add milestone markers (TTV &lt; 14 days, renewal cycle, sponsor cadence).</li>
-            <li>Feed learnings from Churn back into Kickoff to close the loop.</li>
-          </ul>
-        </div>
         <p className="text-xs">
           © {new Date().getFullYear()} Sandra Oviawe CSM
         </p>
