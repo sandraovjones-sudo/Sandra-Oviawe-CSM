@@ -204,7 +204,8 @@ useEffect(() => {
             </div>
           </div>
         </div>
-
+        </section>
+        
       {/* PROJECTS WITH POP‑OUT TABS */}
       <section id="projects" className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-6">
