@@ -284,8 +284,8 @@ useEffect(() => {
             Customer Lifecycle Journey Map
           </h2>
           <p className="mt-2 text-stone-600">
-            Kickoff & Onboarding → Adoption & Engagement → Renewal & Growth → Churn & Offboarding.
-            Modular, reusable playbooks you can present as consulting IP.
+            "I've developed a comprehensive, customer lifecycle framework spanning Kickoff & Onboarding through Adoption & Engagement to Renewal & Growth,",
+            "with structured playbooks for each stage that serve as reusable consulting IP and enable proactive churn management if risks emerge."
           </p>
         </div>
         <CustomerLifecycleTimeline />
