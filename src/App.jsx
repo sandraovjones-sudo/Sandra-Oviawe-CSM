@@ -204,31 +204,6 @@ useEffect(() => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* HIGHLIGHTED SUBJECTS / FILTERS */}
-      <section id="subjects" className="border-y border-stone-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-sm font-medium">Highlighted subjects:</span>
-            {chips.map((c) => (
-              <button
-                key={c}
-                className="rounded-full border border-stone-300 px-3 py-1 text-sm hover:bg-stone-100"
-                onClick={() => setQuery(c)}
-              >
-                {c}
-              </button>
-            ))}
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search tags, roles, projects…"
-              className="ml-auto w-full md:w-72 rounded-full border border-stone-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-stone-300"
-            />
-          </div>
-        </div>
-      </section>
 
       {/* PROJECTS WITH POP‑OUT TABS */}
       <section id="projects" className="mx-auto max-w-6xl px-6 py-10">
