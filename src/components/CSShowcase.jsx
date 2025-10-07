@@ -60,7 +60,7 @@ export default function CSShowcase() {
     <section className="mx-auto max-w-6xl px-4 py-12">
       {/* Section Header */}
       <div className="mb-8 grid gap-3">
-        <h2 className="text-3xl font-semibold tracking-tight">Outcome‑Led CS: Two Live Workspaces</h2>
+        <h2 className="text-3xl font-semibold tracking-tight">Featured Projects</h2>
         <p className="text-stone-600 max-w-3xl">
           Rather than simply claiming to be a Strategic Customer Success professional, I chose to prove it. Over the last 30 days, I ran an
           intensive programme managing a £/$4.9M B2B SaaS portfolio across 15 accounts—shipping 30+ deliverables that
