@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react"; 
 import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
+import CSShowcase from "./components/CSShowcase";
 export default function App() {
   const [query, setQuery] = useState("");
   const chips = [
