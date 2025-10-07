@@ -174,7 +174,7 @@ useEffect(() => {
     Tailored playbooks
   </a>
                 
-     <a
+  <a
   href="#featured"
   aria-current={activeId === "featured" ? "page" : undefined}
   className={
