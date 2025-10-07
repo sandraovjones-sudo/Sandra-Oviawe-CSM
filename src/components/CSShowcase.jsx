@@ -51,9 +51,9 @@ export default function CSShowcase() {
       {/* Section Header */}
       <div className="mb-8 grid gap-3">
         <h2 className="text-3xl font-semibold tracking-tight">Featured Projects</h2>
-        <p className="text-stone-600 max-w-3xl">
-         Two live workspaces demonstrating outcome-led CS in action — 30 days, £/$4.9M ARR, 30+ director-level artefacts.
-          </p>
+        <p className="text-stone-600 w-full whitespace-nowrap overflow-hidden text-ellipsis">
+  Two live workspaces demonstrating outcome-led CS in action — 30 days, £/$4.9M ARR, 30+ director-level artefacts.
+</p>
       </div>
 
       {/* Cards */}
