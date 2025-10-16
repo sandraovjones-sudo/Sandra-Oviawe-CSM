@@ -272,18 +272,18 @@ useEffect(() => {
         </div>
       </section>
             {/* LIFECYCLE MAP */}
-      <section id="lifecycle" className="mx-auto max-w-6xl px-6 py-10">
-        <div className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-semibold">
-            Customer Lifecycle Journey Map
-          </h2>
-          <p className="mt-2 text-stone-600">
-            I've developed a comprehensive, customer lifecycle framework spanning Kickoff & Onboarding through Adoption & Engagement to Renewal & Growth,
-            with structured playbooks for each stage that serve as reusable consulting IP, enabling proactive churn management if risks emerge.
-          </p>
-        </div>
-        <CSMDashboard />
-      </section>
+<section id="lifecycle" className="mx-auto max-w-6xl px-6 py-10">
+  <div className="mb-6">
+    <h2 className="text-2xl md:text-3xl font-semibold">
+      Customer Lifecycle Journey Map
+    </h2>
+    <p className="mt-2 text-stone-600">
+      I've developed a comprehensive, customer lifecycle framework spanning Kickoff & Onboarding through Adoption & Engagement to Renewal & Growth,
+      with structured playbooks for each stage that serve as reusable consulting IP, enabling proactive churn management if risks emerge.
+    </p>
+  </div>
+  <CSMDashboard />
+</section>
 
       {/* TAILORED PLAYBOOKS */}
       <section id="playbooks" className="border-y border-stone-200 bg-white">
