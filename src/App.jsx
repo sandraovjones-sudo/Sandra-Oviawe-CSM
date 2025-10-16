@@ -21,19 +21,21 @@ export default function App() {
     () => [
       {
         id: "as-micro-journey",
-        title: "Micro‑Journey Map: monday.com × Artisan Savant",
-        tags: ["Adoption", "AI & Scale", "Workshops"],
-        role: "Tech CSM (Mock Consulting)",
-        period: "2025",
+        title: "Predictive Onboarding Journey: BlueJeans by Verizon x Freshfields",
+        tags: ["Adoption", "Onboarding", "Predictive Analytics", "AI & Scale"],
+        role: "Tech CSM (Enterprise SaaS)",
+        period: "2024",
         summary:
-          "Designed a micro‑journey for a small business (Artisan Savant Floristry) to operationalise monday.com for CRM, projects, and content planning.",
+          "Designed a predictive onboarding framework for Freshfields to accelerate client enablement and forecast engagement health across global legal teams using AI-assisted analytics.",
         outcomes: [
-          "Cut content‑production cycle time by 35% using templated automations & status boards.",
-          "Increased weekly task throughput by 42% via 1→many training videos and SOP cards.",
-          "Introduced value milestones with health‑scored check‑ins to trigger success plays.",
+          "Reduced onboarding cycle by 41% through automation of workflow mapping and milestone tracking in Gainsight and Micro",
+          "Delivered data-driven Success Plans mapping each client’s communication objectives to measurable outcomes (meeting adoption rate, collaboration ROI).",
+          "Delivered data-driven Success Plans with value-based milestones that connected contract terms to measurable outcomes (billable efficiency, client collaboration speed).",
+          "Partnered with Product and Customer Insights teams to forecast adoption probability and renewal likelihood using ML-based trend analysis.",
         ],
         details:
-          "Assets: journey map, value milestones, Success Plan template, health score (leading signals), and a 12‑week adoption play. Demonstrates ability to package ‘product + process’ for quick wins.",
+          "Assets: predictive onboarding journey map, Success Plan template, value-milestone tracker, AI-powered health score (leading indicators), and onboarding progress dashboard.
+Demonstrates ability to connect predictive analytics + customer success strategy to drive proactive adoption, faster value realisation, and scalable enterprise outcomes.",
       },
       {
         id: "bj-kingspan",
