@@ -200,7 +200,7 @@ useEffect(() => {
 </div>
 
               <div className="mt-6 text-sm opacity-80">
-                Suffolk, UK • SaaS • Healthcare • Pharma • Telecom • Enterprise & SMB
+                London, UK • SaaS • Healthcare • Pharma • Telecom • Enterprise & SMB
               </div>
             </div>
             <div className="md:justify-self-end">
