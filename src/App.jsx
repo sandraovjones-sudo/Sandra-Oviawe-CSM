@@ -23,7 +23,7 @@ export default function App() {
         id: "as-micro-journey",
         title: "Predictive Onboarding Journey: BlueJeans by Verizon x Freshfields",
         tags: ["Adoption", "Onboarding", "Predictive Analytics", "AI & Scale"],
-        role: "Tech CSM (Enterprise SaaS)",
+        role: "Customer Success Manager — BlueJeans by Verizon- Tech (Enterprise SaaS)",
         period: "2024",
         summary:
           "Designed a predictive onboarding framework for Freshfields to accelerate client enablement and forecast engagement health across global legal teams using AI-assisted analytics.",
@@ -57,7 +57,7 @@ Demonstrates ability to connect predictive analytics + customer success strategy
         id: "informa-value-comms",
         title: "Value Communication in Regulated Environments",
         tags: ["Healthcare", "Enterprise", "Adoption", "Renewals"],
-        role: "Pham CSM - Informa | Datamonitor Healthcare",
+        role: "Customer Success Manager - Datamonitor Healthcare",
         period: "2016–2018",
         summary:
           "Specialised in value communication across Pharma, BioTech and MedTech stakeholders - translating product features into ROI-driven business outcomes while navigating strict regulatory communication constraints.",
@@ -72,19 +72,20 @@ Demonstrates ability to connect predictive analytics + customer success strategy
       },
       {
         id: "Standard Bank",
-        title: "Enterprise Lens: CX, Ops & Growth at Standard Bank & BlueJeans",
+        title: "Enterprise Lens: CX, Ops & Growth: BlueJeans × Standard Bank",
         tags: ["AI & Scale", "Transformation", "Expansion"],
-        role: "Customer Success Manager - Standard Bank • BlueJeans by Verizon (2024)",
+        role: "Customer Success Manager — BlueJeans by Verizon",
         period: "2022-2024",
         summary:
-          "Built repeatable success frameworks for enterprise portfolios, executive programs, and adoption playbooks — transferable across SaaS and financial services.",
+          "Scaled adoption and retention across SaaS video collaboration (12 accounts, £3.2M ARR) and digital banking transformation (14 corporate clients).",
         outcomes: [
           "3-phase engagement model (Kickoff → Adoption → Expansion) applied to £3.2M ARR portfolio at BlueJeans and multi-region client base at Standard Bank.",
           "‘Value mapping’ frameworks linking product features to business outcomes, influencing renewals and cross-sell opportunities.",
           "Operational dashboards for health scoring, SLA adherence, and churn-risk signals, driving 97% GRR and 117% NRR at BlueJeans.",
+          "Reduced escalations by 34% through proactive health monitoring and C-suite QBRs.",
         ],
         details:
-          "Outcomes, Artefacts & Play: Demonstrated product-led adoption, KPI discipline, and executive storytelling — the same muscles that power enterprise growth, retention, and expansion.",
+          "Outcomes, Artefacts & Play: Executive storytelling with ROI evidence drove renewals in both regulated (banking) and high-velocity (SaaS) environments.",
       },
     ],
     []
