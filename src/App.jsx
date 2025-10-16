@@ -34,8 +34,8 @@ export default function App() {
           "Partnered with Product and Customer Insights teams to forecast adoption probability and renewal likelihood using ML-based trend analysis.",
         ],
         details:
-          "Assets: predictive onboarding journey map, Success Plan template, value-milestone tracker, AI-powered health score (leading indicators), and onboarding progress dashboard.
-Demonstrates ability to connect predictive analytics + customer success strategy to drive proactive adoption, faster value realisation, and scalable enterprise outcomes.",
+          `Assets: predictive onboarding journey map, Success Plan template, value-milestone tracker, AI-powered health score (leading indicators), and onboarding progress dashboard.
+Demonstrates ability to connect predictive analytics + customer success strategy to drive proactive adoption, faster value realisation, and scalable enterprise outcomes.`,
       },
       {
         id: "bj-kingspan",
