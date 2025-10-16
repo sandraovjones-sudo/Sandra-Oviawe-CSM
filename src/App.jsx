@@ -1,19 +1,8 @@
-import CSMDashboard from './components/CSMDashboard'
-import './index.css'
-
-function App() {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <CSMDashboard />
-    </div>
-  )
-}
-
-export default App
 import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react"; 
 import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
 import CSShowcase from "./components/CSShowcase";
+import CSMDashboard from "./components/CSMDashboard";
 export default function App() {
   const [query, setQuery] = useState("");
   const chips = [
@@ -293,7 +282,9 @@ useEffect(() => {
             with structured playbooks for each stage that serve as reusable consulting IP, enabling proactive churn management if risks emerge.
           </p>
         </div>
-        <CustomerLifecycleTimeline />
+        <*INTERACTIVE DASHBOARD* />
+      <section id="lifecycle" className="mx-auto max-w-6xl px-6 py-10">
+        <CSMDashboard />
       </section>
 
       {/* TAILORED PLAYBOOKS */}
