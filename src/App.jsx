@@ -1,3 +1,15 @@
+import CSMDashboard from './components/CSMDashboard'
+import './index.css'
+
+function App() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <CSMDashboard />
+    </div>
+  )
+}
+
+export default App
 import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react"; 
 import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
