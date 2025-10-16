@@ -40,18 +40,18 @@ Demonstrates ability to connect predictive analytics + customer success strategy
       {
         id: "bj-kingspan",
         title: "Incident to Advocacy: BlueJeans by Verizon × Kingspan",
-        tags: ["Renewals", "Telecom", "Enterprise", "Workshops"],
+        tags: ["Renewals", "Telecom", "CX Ops", "Enterprise", "Predictive Analytics"],
         role: "Customer Success Manager — BlueJeans by Verizon",
         period: "2022–2024",
         summary:
           "Resolved buffering/audio and Adobe integration issues impacting executive broadcasts; turned a renewal risk into a referenceable advocate.",
         outcomes: [
-          "MTTR down 60% through structured triage runbook and war‑room comms.",
-          "NPS moved from 3 → 8 within a quarter after stability play + enablement.",
-          "Secured 2‑year renewal with expansion to additional business units.",
+          "MTTR down 60% through structured triage runbook, war‑room comms, telemetry, usage logs, and sentiment alerts",
+          "NPS improved from 3 → 8 within a quarter after a stability + enablement play focused on role-based insights.",
+          "Secured 2-year renewal and 18% expansion, positioning Kingspan as a referenceable advocate.",
         ],
         details:
-          "Play used: ‘Stabilise → Educate → Expand’. I led root‑cause coordination with Support/Engineering, produced a no‑jargon exec update, then ran role‑based training. Closed loop with a QBR that highlighted value outcomes, not tickets.",
+          "Play used: ‘Stabilise → Educate → Expand’. I led root‑cause coordination with Support/Engineering, produced a no‑jargon exec update, then ran role‑based training. Closed loop with a QBR that highlighted value outcomes, not tickets. Demonstrates ability to convert technical recovery into strategic advocacy through predictive intelligence, operational excellence, and value communication.",
       },
       {
         id: "informa-value-comms",
