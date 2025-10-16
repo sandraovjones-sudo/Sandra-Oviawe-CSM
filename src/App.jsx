@@ -39,7 +39,7 @@ Demonstrates ability to connect predictive analytics + customer success strategy
       },
       {
         id: "bj-kingspan",
-        title: "Incident to Advocacy: BlueJeans × Kingspan",
+        title: "Incident to Advocacy: BlueJeans by Verizon × Kingspan",
         tags: ["Renewals", "Telecom", "Enterprise", "Workshops"],
         role: "Customer Success Manager — BlueJeans by Verizon",
         period: "2022–2024",
@@ -55,7 +55,7 @@ Demonstrates ability to connect predictive analytics + customer success strategy
       },
       {
         id: "informa-value-comms",
-        title: "Value Communication in Regulated Environments",
+        title: "Value Communication in Regulated Environments: Informa Datamonitor",
         tags: ["Healthcare", "Enterprise", "Adoption", "Renewals"],
         role: "Customer Success Manager - Datamonitor Healthcare",
         period: "2016–2018",
@@ -72,7 +72,7 @@ Demonstrates ability to connect predictive analytics + customer success strategy
       },
       {
         id: "Standard Bank",
-        title: "Enterprise Lens: CX, Ops & Growth: BlueJeans × Standard Bank",
+        title: "Enterprise Lens: CX, Ops & Growth: BlueJeans by Verizon × Standard Bank",
         tags: ["AI & Scale", "Transformation", "Expansion"],
         role: "Customer Success Manager — BlueJeans by Verizon",
         period: "2022-2024",
