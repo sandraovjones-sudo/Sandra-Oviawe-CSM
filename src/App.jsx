@@ -60,7 +60,7 @@ Demonstrates ability to connect predictive analytics + customer success strategy
         role: "Pham CSM - Informa | Datamonitor Healthcare",
         period: "2016–2018",
         summary:
-          "Specialised in value communication across pharma and NHS stakeholders - translating product features into ROI-driven business outcomes while navigating strict regulatory communication constraints.",
+          "Specialised in value communication across Pharma, BioTech and MedTech stakeholders - translating product features into ROI-driven business outcomes while navigating strict regulatory communication constraints.",
         outcomes: [
           "Translated data into value stories: reframed platform outputs (“50,000 clinical trial records”) into business results (“cut Phase II landscape analysis from 3 weeks → 4 days, saving 76 analyst hours per quarter”).",
           "Operated under compliance guardrails: anonymised case studies for GDPR/HIPAA, ensured evidence-based claims (ABPI/FDA), and provided audit-ready ROI decks for procurement.",
@@ -68,8 +68,7 @@ Demonstrates ability to connect predictive analytics + customer success strategy
           "Reduced time-to-first-value by 33% (30→20 days) via guided usage pathways and persona-based value narratives.",
         ],
         details:
-          `Artefacts included a regulated-friendly enablement pack, ROI storyboard decks by persona (CMO, procurement, researcher), anonymised case-study library, and a renewal pre-mortem process surfacing blockers 120 days early.
-Demonstrates mastery in high-trust value storytelling under legal, ethical, and compliance constraints — a critical skill for SaaS CSMs in regulated verticals like MedTech, FinServ, and GovTech.`,
+          `Artefacts included a regulated-friendly enablement pack, ROI storyboard decks by persona (CMO, procurement, researcher), anonymised case-study library, and a renewal pre-mortem process surfacing blockers 120 days early.`,
       },
       {
         id: "Standard Bank",
