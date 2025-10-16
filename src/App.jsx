@@ -282,7 +282,7 @@ useEffect(() => {
             with structured playbooks for each stage that serve as reusable consulting IP, enabling proactive churn management if risks emerge.
           </p>
         </div>
-        <*INTERACTIVE DASHBOARD* />
+     </section>
       <section id="lifecycle" className="mx-auto max-w-6xl px-6 py-10">
         <CSMDashboard />
       </section>
