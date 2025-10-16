@@ -57,17 +57,19 @@ Demonstrates ability to connect predictive analytics + customer success strategy
         id: "informa-value-comms",
         title: "Value Communication in Regulated Environments",
         tags: ["Healthcare", "Enterprise", "Adoption", "Renewals"],
-        role: "Account Management / Customer Insights — Informa | Datamonitor Healthcare",
+        role: "Pham CSM - Informa | Datamonitor Healthcare",
         period: "2016–2018",
         summary:
-          "Drove usage of healthcare intelligence across pharma & NHS stakeholders with compliant enablement and ROI storytelling.",
+          "Specialised in value communication across pharma and NHS stakeholders - translating product features into ROI-driven business outcomes while navigating strict regulatory communication constraints.",
         outcomes: [
-          "Portfolio ARR influenced: £2.1M+ across global enterprise accounts.",
-          "Built executive ‘Why Now’ briefs: usage heatmaps, time‑to‑insight, and saved analyst hours.",
-          "Reduced time‑to‑first‑value from 30→20 days via guided pathways.",
+          "Translated data into value stories: reframed platform outputs (“50,000 clinical trial records”) into business results (“cut Phase II landscape analysis from 3 weeks → 4 days, saving 76 analyst hours per quarter”).",
+          "Operated under compliance guardrails: anonymised case studies for GDPR/HIPAA, ensured evidence-based claims (ABPI/FDA), and provided audit-ready ROI decks for procurement.",
+          "Influenced £2.1M+ portfolio ARR through high-trust storytelling and compliant enablement packs.",
+          "Reduced time-to-first-value by 33% (30→20 days) via guided usage pathways and persona-based value narratives.",
         ],
         details:
-          "Artefacts included a regulated‑friendly enablement pack, persona‑based decks, and a renewal pre‑mortem to surface blockers 120 days ahead of schedule.",
+          "Artefacts included a regulated-friendly enablement pack, ROI storyboard decks by persona (CMO, procurement, researcher), anonymised case-study library, and a renewal pre-mortem process surfacing blockers 120 days early.
+Demonstrates mastery in high-trust value storytelling under legal, ethical, and compliance constraints — a critical skill for SaaS CSMs in regulated verticals like MedTech, FinServ, and GovTech.",
       },
       {
         id: "Standard Bank",
