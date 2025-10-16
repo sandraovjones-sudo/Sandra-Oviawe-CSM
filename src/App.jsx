@@ -68,8 +68,8 @@ Demonstrates ability to connect predictive analytics + customer success strategy
           "Reduced time-to-first-value by 33% (30→20 days) via guided usage pathways and persona-based value narratives.",
         ],
         details:
-          "Artefacts included a regulated-friendly enablement pack, ROI storyboard decks by persona (CMO, procurement, researcher), anonymised case-study library, and a renewal pre-mortem process surfacing blockers 120 days early.
-Demonstrates mastery in high-trust value storytelling under legal, ethical, and compliance constraints — a critical skill for SaaS CSMs in regulated verticals like MedTech, FinServ, and GovTech.",
+          `Artefacts included a regulated-friendly enablement pack, ROI storyboard decks by persona (CMO, procurement, researcher), anonymised case-study library, and a renewal pre-mortem process surfacing blockers 120 days early.
+Demonstrates mastery in high-trust value storytelling under legal, ethical, and compliance constraints — a critical skill for SaaS CSMs in regulated verticals like MedTech, FinServ, and GovTech.`,
       },
       {
         id: "Standard Bank",
