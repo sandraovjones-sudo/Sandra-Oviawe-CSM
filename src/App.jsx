@@ -1,16 +1,13 @@
-// src/App.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import CSShowcase from "./components/CSShowcase";
-// If you don't have a Vite "@" alias configured, keep this relative import:
 import EarlyWarningCSDashboard from "./components/EarlyWarningCSDashboard";
 
 export default function App() {
-  // ----- State -----
+ 
   const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState("");
 
-  // ----- Data (case studies) -----
   const projects = useMemo(
     () => [
       {
@@ -87,7 +84,6 @@ export default function App() {
     []
   );
 
-  // ----- Derived -----
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return projects;
@@ -99,7 +95,6 @@ export default function App() {
     );
   }, [projects, query]);
 
-  // ----- Active section highlighting -----
   useEffect(() => {
     const ids = ["projects", "lifecycle", "playbooks", "experience", "dashboard", "featured", "contact"];
     const sections = ids
@@ -120,7 +115,6 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  // ----- Render -----
   return (
     <main className="min-h-screen w-full bg-stone-50 text-stone-900">
       {/* HERO */}
