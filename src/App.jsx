@@ -2,12 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react"; 
 import CSShowcase from "./components/CSShowcase";
 import EarlyWarningCSDashboard from "@/components/EarlyWarningCSDashboard";
-export default function Page() {
-  return (
-    <main className="min-h-screen bg-gray-50">
-      <EarlyWarningCSDashboard />
-    </main>
-  );
+
 }
     "Onboarding",
     "Adoption",
@@ -273,6 +268,19 @@ useEffect(() => {
 
         <div className="mt-6 text-xs text-stone-500">
         </div>
+
+        {/* DASHBOARD SECTION */}
+        <section id="dashboard" className="border-t border-stone-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+        <h2 className="text-2xl md:text-3xl font-semibold">Customer Health Dashboard</h2>
+        <p className="mt-2 text-stone-600">
+      Interactive early-warning system detecting usage decline, feature abandonment, and churn probability.
+        </p>
+        <div className="mt-6">
+      <EarlyWarningCSDashboard />
+    </div>
+  </div>
+</section>
 
       {/* TAILORED PLAYBOOKS */}
       <section id="playbooks" className="border-y border-stone-200 bg-white">
