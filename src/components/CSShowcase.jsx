@@ -129,12 +129,14 @@ export default function CSShowcase() {
             </div>
 
             <iframe
-              key={active.id}
-              title={`${active.title} – full`}
-              src={active.url}
-              className="h-[75vh] w-full"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-            />
+  ref={iframeRef}
+  title={`${p.title} – preview`}
+  src={p.url}
+  loading="lazy"
+  className="w-full border-t border-stone-100 aspect-[16/9] rounded-b-2xl"
+  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+/>
+
           </div>
         </div>
       )}
