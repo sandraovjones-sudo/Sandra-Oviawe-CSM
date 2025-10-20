@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion"; // 🔧 Optional: remove if unused
 import rawData from "@/data/customerHealth.json";
 
+// 1) Adapt MySQL-style keys → compact keys the dashboard uses
 const realData = (Array.isArray(rawData) ? rawData : []).map(r => ({
   d: r.snapshot_date,
   a: r.account_name,
@@ -14,6 +15,7 @@ const realData = (Array.isArray(rawData) ? rawData : []).map(r => ({
   qbr: r.qbr_status
 }));
 
+// 2) Utilities
 function groupByAccount(snaps) {
   const by = new Map();
   snaps.forEach(r => {
@@ -45,11 +47,13 @@ function actionForTier(tier) {
   return "Healthy – explore expansion";
 }
 
+// 3) Component
 export default function EarlyWarningCSDashboard({ snapshots = realData }) {
-
-const engagementFromQBR = (qbr) =>
+  // --- State / controls
+  const engagementFromQBR = (qbr) =>
     qbr === "On track" ? 90 : qbr === "Delayed" ? 55 : 25;
-const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15 });
+
+  const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15 });
   const [featureBands, setFeatureBands] = useState({ critical: 50, high: 33, watch: 20 });
   const [supportBands, setSupportBands] = useState({ critical: 40, high: 60, watch: 75 });
   const [weights, setWeights] = useState({
@@ -58,23 +62,29 @@ const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15
   const [assumedFinancial, setAssumedFinancial] = useState(60);
   const [showAtRiskOnly, setShowAtRiskOnly] = useState(false);
 
+  // Local Slider helper
   const Slider = ({ label, value, min=0, max=100, step=1, onChange }) => (
     <div className="mb-3">
       <div className="flex justify-between text-sm mb-1">
         <span className="font-medium">{label}</span><span>{value}</span>
       </div>
-      <input type="range" min={min} max={max} step={step} value={value}
-             onChange={(e)=>onChange(Number(e.target.value))} className="w-full" />
+      <input
+        type="range"
+        min={min} max={max} step={step} value={value}
+        onChange={(e)=>onChange(Number(e.target.value))}
+        className="w-full"
+      />
     </div>
   );
 
+  // --- Data shaping
   const accounts = useMemo(() => groupByAccount(snapshots), [snapshots]);
 
   const rows = useMemo(() => {
     const out = [];
     accounts.forEach((hist, name) => {
       const latest = hist[hist.length - 1];
-      const idxAgo = Math.max(0, hist.length - 4);
+      const idxAgo = Math.max(0, hist.length - 4); // ~4 snapshots ≈ 30 days
       const prior = hist[idxAgo];
 
       const usageDecline = -pctChange(prior.dau, latest.dau); // positive = decline
@@ -86,7 +96,7 @@ const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15
       const csatGood = Math.max(0, Math.min(100, latest.csat * 20));
       const supportHealth = Math.max(0, 100 - (ticketsNorm*0.4 + resNorm*0.3 + (100 - csatGood)*0.3));
 
-      // Map to risks (0 best → 100 worst)
+      // Risks (0 best → 100 worst)
       const usageRisk = Math.max(0, Math.min(100, usageDecline));
       const featRisk = Math.max(0, Math.min(100, featureDropPct));
       const supportRisk = 100 - supportHealth;
@@ -143,83 +153,102 @@ const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15
   const totals = useMemo(() => ({
     critical: rows.filter(r => r.tier === "CRITICAL").length,
     high: rows.filter(r => r.tier === "HIGH RISK").length,
-    arrAtRisk: rows.filter(r => ["CRITICAL","HIGH RISK"].includes(r.tier))
-                  .reduce((s, r) => s + r.arr, 0),
+    arrAtRisk: rows
+      .filter(r => ["CRITICAL","HIGH RISK"].includes(r.tier))
+      .reduce((s, r) => s + r.arr, 0),
   }), [rows]);
 
+  // --- Render (everything inside one container)
   return (
     <div className="w-full p-6 max-w-7xl mx-auto">
-      {/* your existing controls & cards */}
-      {/* Your Slider rows go here */}
-      <Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
-      <Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
-      <Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
-      <Slider label={`Sentiment (${weights.sentiment}%)`} value={weights.sentiment} onChange={(v)=>setWeights({...weights, sentiment:v})} />
+      {/* Controls */}
+      <div className="grid md:grid-cols-2 gap-4 mb-6">
+        <div className="p-4 rounded-2xl shadow bg-white">
+          <h3 className="font-semibold mb-2">Weights</h3>
+          <Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
+          <Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
+          <Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
+          <Slider label={`Sentiment (${weights.sentiment}%)`} value={weights.sentiment} onChange={(v)=>setWeights({...weights, sentiment:v})} />
+        </div>
 
-<div className="p-4 rounded-2xl shadow bg-white">
-<h3 className="font-semibold mb-2">Assumptions</h3>
-<Slider label="Assumed Financial Health" value={assumedFinancial} onChange={setAssumedFinancial} />
-<label className="inline-flex items-center gap-2 mt-2"><input type="checkbox" checked={showAtRiskOnly} onChange={(e)=>setShowAtRiskOnly(e.target.checked)} /> Show only at-risk</label>
-</div>
-<div className="p-4 rounded-2xl shadow bg-white">
-<h3 className="font-semibold mb-2">At‑a‑glance</h3>
-<div className="grid grid-cols-3 gap-2 text-center">
-<div className="rounded-xl bg-red-50 p-3">
-<div className="text-2xl font-bold">{totals.critical}</div>
-<div className="text-xs">Critical</div>
-</div>
-<div className="rounded-xl bg-orange-50 p-3">
-<div className="text-2xl font-bold">{totals.high}</div>
-<div className="text-xs">High Risk</div>
-</div>
-<div className="rounded-xl bg-indigo-50 p-3">
-<div className="text-2xl font-bold">£{(totals.arrAtRisk/1000).toFixed(0)}k</div>
-<div className="text-xs">ARR at risk</div>
-</div>
-</div>
-</div>
-</div>
+        <div className="p-4 rounded-2xl shadow bg-white">
+          <h3 className="font-semibold mb-2">Assumptions</h3>
+          <Slider label="Assumed Financial Health" value={assumedFinancial} onChange={setAssumedFinancial} />
+          <label className="inline-flex items-center gap-2 mt-2">
+            <input
+              type="checkbox"
+              checked={showAtRiskOnly}
+              onChange={(e)=>setShowAtRiskOnly(e.target.checked)}
+            />
+            Show only at-risk
+          </label>
+        </div>
 
+        <div className="p-4 rounded-2xl shadow bg-white md:col-span-2">
+          <h3 className="font-semibold mb-2">At-a-glance</h3>
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="rounded-xl bg-red-50 p-3">
+              <div className="text-2xl font-bold">{totals.critical}</div>
+              <div className="text-xs">Critical</div>
+            </div>
+            <div className="rounded-xl bg-orange-50 p-3">
+              <div className="text-2xl font-bold">{totals.high}</div>
+              <div className="text-xs">High Risk</div>
+            </div>
+            <div className="rounded-xl bg-indigo-50 p-3">
+              <div className="text-2xl font-bold">£{(totals.arrAtRisk/1000).toFixed(0)}k</div>
+              <div className="text-xs">ARR at risk</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-{/* Table */}
-<div className="rounded-2xl overflow-hidden shadow">
-<table className="min-w-full bg-white">
-<thead className="bg-gray-50 text-xs uppercase text-gray-500">
-<tr>
-<th className="px-4 py-3 text-left">Account</th>
-<th className="px-4 py-3 text-right">ARR</th>
-<th className="px-4 py-3 text-center">Usage Δ30d</th>
-<th className="px-4 py-3 text-center">Features Δ</th>
-<th className="px-4 py-3 text-center">Support Score</th>
-<th className="px-4 py-3 text-center">Churn %</th>
-<th className="px-4 py-3 text-center">Tier</th>
-<th className="px-4 py-3 text-left">Action</th>
-</tr>
-</thead>
-<tbody className="text-sm">
-{rows.map((r) => (
-<tr key={r.account} className="border-t">
-<td className="px-4 py-3">
-<div className="font-semibold">{r.account}</div>
-<div className="text-[11px] text-gray-500">U:{r.usageFlag} • F:{r.featureFlag} • S:{r.supportFlag}</div>
-</td>
-<td className="px-4 py-3 text-right">£{(r.arr/1000).toFixed(0)}k</td>
-<td className="px-4 py-3 text-center">-{r.usageDecline}%</td>
-<td className="px-4 py-3 text-center">-{r.featureDropPct}%</td>
-<td className="px-4 py-3 text-center">{r.supportHealth}</td>
-<td className="px-4 py-3 text-center font-semibold">{r.churnProb}%</td>
-<td className="px-4 py-3 text-center"><span className={badgeClass(r.tier)}>{r.tier}</span></td>
-<td className="px-4 py-3">{r.action}</td>
-</tr>
-))}
-</tbody>
-</table>
-</div>
+      {/* Table */}
+      <div className="rounded-2xl overflow-hidden shadow bg-white">
+        <table className="min-w-full">
+          <thead className="bg-gray-50 text-xs uppercase text-gray-500">
+            <tr>
+              <th className="px-4 py-3 text-left">Account</th>
+              <th className="px-4 py-3 text-right">ARR</th>
+              <th className="px-4 py-3 text-center">Usage Δ30d</th>
+              <th className="px-4 py-3 text-center">Features Δ</th>
+              <th className="px-4 py-3 text-center">Support Score</th>
+              <th className="px-4 py-3 text-center">Churn %</th>
+              <th className="px-4 py-3 text-center">Tier</th>
+              <th className="px-4 py-3 text-left">Action</th>
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {rows.map((r) => (
+              <tr key={r.account} className="border-t">
+                <td className="px-4 py-3">
+                  <div className="font-semibold">{r.account}</div>
+                  <div className="text-[11px] text-gray-500">
+                    U:{r.usageFlag} • F:{r.featureFlag} • S:{r.supportFlag}
+                  </div>
+                </td>
+                <td className="px-4 py-3 text-right">£{(r.arr/1000).toFixed(0)}k</td>
+                <td className="px-4 py-3 text-center">-{r.usageDecline}%</td>
+                <td className="px-4 py-3 text-center">-{r.featureDropPct}%</td>
+                <td className="px-4 py-3 text-center">{r.supportHealth}</td>
+                <td className="px-4 py-3 text-center font-semibold">{r.churnProb}%</td>
+                <td className="px-4 py-3 text-center"><span className={badgeClass(r.tier)}>{r.tier}</span></td>
+                <td className="px-4 py-3">{r.action}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-
-<div className="text-xs text-gray-500 mt-4">
-<p>Model maths: Usage risk uses 30‑day DAU% decline; Feature risk uses share of features dropped; Support score = 100 − (Tickets*0.4 + ResolutionHrs*0.3 + (100−CSAT*20)*0.3). Churn % is a weighted blend of all risks + engagement/financial/sentiment assumptions.</p>
-</div>
-</div>
-);
+      {/* Footer */}
+      <div className="text-xs text-gray-500 mt-4">
+        <p>
+          Model maths: Usage risk uses 30-day DAU% decline; Feature risk uses share of features dropped;
+          Support score = 100 − (Tickets*0.4 + ResolutionHrs*0.3 + (100−CSAT*20)*0.3).
+          Churn % is a weighted blend of all risks + engagement/financial/sentiment assumptions.
+        </p>
+      </div>
+    </div>
+  );
 }
+
