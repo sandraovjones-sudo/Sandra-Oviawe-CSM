@@ -49,7 +49,7 @@ export default function CSShowcase() {
       </div>
 
       {/* Cards */}
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2 auto-rows-fr">
         {PROGRAMS.map((p) => (
           <article
             key={p.id}
