@@ -96,23 +96,19 @@ useEffect(() => {
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((e) => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible?.target?.id) setActiveId(visible.target.id);
-    },
-    {
-      root: null,
-      rootMargin: "0px 0px -40% 0px",
-      threshold: [0.2, 0.4, 0.6, 0.8],
-    }
-  );
+ const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target?.id) setActiveId(visible.target.id);
+      },
+      { root: null, rootMargin: "0px 0px -40% 0px", threshold: [0.2, 0.4, 0.6, 0.8] }
+    );
 
-  sections.forEach((el) => observer.observe(el));
-  return () => observer.disconnect();
-}, []);
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
   
   return (
     <main className="min-h-screen w-full bg-stone-50 text-stone-900">
@@ -137,7 +133,7 @@ useEffect(() => {
         : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
     }
   >
-    Explore projects
+    Case Study
   </a>
 
   <a
@@ -148,19 +144,7 @@ useEffect(() => {
         ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
         : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
     }
-  >
-    Lifecycle Journey
-  </a>
-
-  <a
-    href="#playbooks"
-    aria-current={activeId === "playbooks" ? "page" : undefined}
-    className={
-      activeId === "playbooks"
-        ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
-        : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
-    }
-  >
+ 
     Tailored playbooks
   </a>
                 
