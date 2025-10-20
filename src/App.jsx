@@ -140,10 +140,10 @@ export default function App() {
 
               <div className="mt-5 flex flex-wrap gap-3">
                 <a
-                  href="#projects"
-                  aria-current={activeId === "projects" ? "page" : undefined}
+                  href="#Case Study"
+                  aria-current={activeId === "Case Study" ? "page" : undefined}
                   className={
-                    activeId === "projects"
+                    activeId === "Case Study"
                       ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
                       : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
                   }
@@ -152,15 +152,15 @@ export default function App() {
                 </a>
 
                 <a
-                  href="#lifecycle"
-                  aria-current={activeId === "lifecycle" ? "page" : undefined}
+                  href="#Health Dasbord"
+                  aria-current={activeId === "Health Dasbord" ? "page" : undefined}
                   className={
-                    activeId === "lifecycle"
+                    activeId === "Health Dasbord"
                       ? "rounded-2xl px-4 py-2 bg-stone-900 text-stone-50 transition"
                       : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
                   }
                 >
-                  Lifecycle Journey
+                  Health Dasbord
                 </a>
 
                 <a
@@ -184,7 +184,7 @@ export default function App() {
                       : "rounded-2xl px-4 py-2 bg-stone-200 hover:bg-stone-300 transition"
                   }
                 >
-                  Featured Projects
+                  Featured Project
                 </a>
 
                 <a
@@ -199,12 +199,10 @@ export default function App() {
                   Experience
                 </a>
               </div>
-
               <div className="mt-6 text-sm opacity-80">
                 London, UK • SaaS • Healthcare • Pharma • Telecom • Enterprise & SMB
               </div>
             </div>
-
             <div className="md:justify-self-end">
               <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm">
                 <h3 className="font-medium text-xl">Signature strengths</h3>
@@ -222,11 +220,11 @@ export default function App() {
       </section>
 
       {/* PROJECTS WITH CASE STUDY TABS */}
-      <section id="projects" className="mx-auto max-w-6xl px-6 py-10">
+      <section id="Case Study" className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-6">
           <h2 className="text-2xl md:text-3xl font-semibold">Case study</h2>
           <p className="mt-2 text-stone-600">
-            Click any tab to expand the case study and see outcomes, artefacts, and the play used.
+            Click any tab to expand the case study and see outcomes, artefacts, and the plays used.
           </p>
         </div>
 
