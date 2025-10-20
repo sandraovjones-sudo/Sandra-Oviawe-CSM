@@ -1,0 +1,24 @@
+[
+  {
+    "snapshot_date": "2025-10-09",
+    "account_name": "LogisticsFlow Co",
+    "arr": 195000,
+    "dau_percent": 31.6,
+    "features_used": 3,
+    "tickets_30d": 12,
+    "avg_resolution_hrs": 38.1,
+    "csat_score": 3.49,
+    "qbr_status": "Delayed"
+  },
+  {
+    "snapshot_date": "2025-10-09",
+    "account_name": "FinanceHub Solutions",
+    "arr": 620000,
+    "dau_percent": 42.6,
+    "features_used": 2,
+    "tickets_30d": 14,
+    "avg_resolution_hrs": 68.5,
+    "csat_score": 3.47,
+    "qbr_status": "Missed"
+  }
+]
