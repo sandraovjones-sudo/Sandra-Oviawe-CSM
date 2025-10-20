@@ -3,19 +3,6 @@ import { Analytics } from "@vercel/analytics/react";
 import CSShowcase from "./components/CSShowcase";
 import EarlyWarningCSDashboard from "@/components/EarlyWarningCSDashboard";
 
-}
-    "Onboarding",
-    "Adoption",
-    "Renewals",
-    "Expansion",
-    "Playbooks",
-    "Enterprise",
-    "AI & Scale",
-    "Healthcare",
-    "Telecom",
-    "Workshops",
-  ];
-
   const projects = useMemo(
     () => [
       {
@@ -222,10 +209,10 @@ useEffect(() => {
         </div>
         </section>
         
-      {/* PROJECTS WITH POP‑OUT TABS */}
+      {/* PROJECTS WITH CASE STUDY TABS */}
       <section id="projects" className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-6">
-          <h2 className="text-2xl md:text-3xl font-semibold">Pop‑out project tabs</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold">case study</h2>
           <p className="mt-2 text-stone-600">
             Click any tab to expand the case study and see outcomes, artefacts, and the play used.
           </p>
