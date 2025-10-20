@@ -1,4 +1,6 @@
-import rawData from "@/data/customerHealth.json";
+import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion"; // optional if you kept the animation
+import rawData from "@/data/customerHealth.json"; // your real JSON
 <Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
 <Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
 <Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
