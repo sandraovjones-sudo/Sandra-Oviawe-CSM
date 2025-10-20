@@ -1,11 +1,14 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react"; 
-import CustomerLifecycleTimeline from "./components/CustomerLifecycleTimeline";
 import CSShowcase from "./components/CSShowcase";
-import CSMDashboard from "./components/CSMDashboard";
-export default function App() {
-  const [query, setQuery] = useState("");
-  const chips = [
+import EarlyWarningCSDashboard from "@/components/EarlyWarningCSDashboard";
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <EarlyWarningCSDashboard />
+    </main>
+  );
+}
     "Onboarding",
     "Adoption",
     "Renewals",
@@ -270,20 +273,6 @@ useEffect(() => {
 
         <div className="mt-6 text-xs text-stone-500">
         </div>
-      </section>
-            {/* LIFECYCLE MAP */}
-<section id="lifecycle" className="mx-auto max-w-6xl px-6 py-10">
-  <div className="mb-6">
-    <h2 className="text-2xl md:text-3xl font-semibold">
-      Customer Lifecycle Journey Map
-    </h2>
-    <p className="mt-2 text-stone-600">
-      I've developed a comprehensive, customer lifecycle framework spanning Kickoff & Onboarding through Adoption & Engagement to Renewal & Growth,
-      with structured playbooks for each stage that serve as reusable consulting IP, enabling proactive churn management if risks emerge.
-    </p>
-  </div>
-  <CSMDashboard />
-</section>
 
       {/* TAILORED PLAYBOOKS */}
       <section id="playbooks" className="border-y border-stone-200 bg-white">
