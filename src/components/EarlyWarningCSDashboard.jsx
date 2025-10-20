@@ -14,20 +14,148 @@ const realData = (Array.isArray(rawData) ? rawData : []).map(r => ({
   qbr: r.qbr_status
 }));
 
-function groupByAccount(...) { ... }
-function pctChange(...) { ... }
-function badgeClass(...) { ... }
-function actionForTier(...) { ... }
+function groupByAccount(snaps) {
+  const by = new Map();
+  snaps.forEach(r => {
+    if (!by.has(r.a)) by.set(r.a, []);
+    by.get(r.a).push(r);
+  });
+  for (const arr of by.values()) arr.sort((x, y) => x.d.localeCompare(y.d));
+  return by;
+}
+
+function pctChange(oldV, newV) {
+  if (oldV === 0 || oldV == null || newV == null) return 0;
+  return ((newV - oldV) / oldV) * 100; // + increase, - decline
+}
+
+function badgeClass(tier) {
+  const base = "rounded-full px-2 py-1 text-xs font-semibold";
+  if (tier === "CRITICAL") return base + " bg-red-100 text-red-700";
+  if (tier === "HIGH RISK") return base + " bg-orange-100 text-orange-700";
+  if (tier === "MEDIUM RISK") return base + " bg-yellow-100 text-yellow-700";
+  if (tier === "LOW RISK") return base + " bg-green-100 text-green-700";
+  return base + " bg-emerald-100 text-emerald-700";
+}
+
+function actionForTier(tier) {
+  if (tier === "CRITICAL") return "EXEC save play: exec call + plan";
+  if (tier === "HIGH RISK") return "Intervention: training + RCA + cadence";
+  if (tier === "MEDIUM RISK") return "Monitor closely; schedule check-in";
+  return "Healthy – explore expansion";
+}
 
 export default function EarlyWarningCSDashboard({ snapshots = realData }) {
 
-return (
-      
-<Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
-<Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
-<Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
-<Slider label={`Sentiment (${weights.sentiment}%)`} value={weights.sentiment} onChange={(v)=>setWeights({...weights, sentiment:v})} />
-</div>
+const engagementFromQBR = (qbr) =>
+    qbr === "On track" ? 90 : qbr === "Delayed" ? 55 : 25;
+const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15 });
+  const [featureBands, setFeatureBands] = useState({ critical: 50, high: 33, watch: 20 });
+  const [supportBands, setSupportBands] = useState({ critical: 40, high: 60, watch: 75 });
+  const [weights, setWeights] = useState({
+    usage: 25, feature: 20, support: 20, engagement: 15, financial: 15, sentiment: 5
+  });
+  const [assumedFinancial, setAssumedFinancial] = useState(60);
+  const [showAtRiskOnly, setShowAtRiskOnly] = useState(false);
+
+  const Slider = ({ label, value, min=0, max=100, step=1, onChange }) => (
+    <div className="mb-3">
+      <div className="flex justify-between text-sm mb-1">
+        <span className="font-medium">{label}</span><span>{value}</span>
+      </div>
+      <input type="range" min={min} max={max} step={step} value={value}
+             onChange={(e)=>onChange(Number(e.target.value))} className="w-full" />
+    </div>
+  );
+
+  const accounts = useMemo(() => groupByAccount(snapshots), [snapshots]);
+
+  const rows = useMemo(() => {
+    const out = [];
+    accounts.forEach((hist, name) => {
+      const latest = hist[hist.length - 1];
+      const idxAgo = Math.max(0, hist.length - 4);
+      const prior = hist[idxAgo];
+
+      const usageDecline = -pctChange(prior.dau, latest.dau); // positive = decline
+      const featureDropPct = prior.feat ? Math.max(0, (prior.feat - latest.feat) / prior.feat * 100) : 0;
+
+      // Support composite (100=great)
+      const ticketsNorm = Math.min(100, latest.tix * 5);
+      const resNorm = Math.min(100, latest.res);
+      const csatGood = Math.max(0, Math.min(100, latest.csat * 20));
+      const supportHealth = Math.max(0, 100 - (ticketsNorm*0.4 + resNorm*0.3 + (100 - csatGood)*0.3));
+
+      // Map to risks (0 best → 100 worst)
+      const usageRisk = Math.max(0, Math.min(100, usageDecline));
+      const featRisk = Math.max(0, Math.min(100, featureDropPct));
+      const supportRisk = 100 - supportHealth;
+      const engagementRisk = 100 - engagementFromQBR(latest.qbr);
+      const financialRisk = 100 - assumedFinancial;
+      const sentimentRisk = 100 - csatGood;
+
+      const totalWeight = Object.values(weights).reduce((a,b)=>a+b,0);
+      const churnProb =
+        usageRisk   * (weights.usage / totalWeight) +
+        featRisk    * (weights.feature / totalWeight) +
+        supportRisk * (weights.support / totalWeight) +
+        engagementRisk * (weights.engagement / totalWeight) +
+        financialRisk  * (weights.financial / totalWeight) +
+        sentimentRisk  * (weights.sentiment / totalWeight);
+
+      let tier = "HEALTHY";
+      if (churnProb >= 70) tier = "CRITICAL";
+      else if (churnProb >= 50) tier = "HIGH RISK";
+      else if (churnProb >= 30) tier = "MEDIUM RISK";
+      else if (churnProb >= 15) tier = "LOW RISK";
+
+      const usageFlag =
+        usageDecline >= usageBands.critical ? "CRITICAL" :
+        usageDecline >= usageBands.high ? "HIGH RISK" :
+        usageDecline >= usageBands.watch ? "WATCH" : "OK";
+
+      const featureFlag =
+        featureDropPct >= featureBands.critical ? "CRITICAL" :
+        featureDropPct >= featureBands.high ? "HIGH RISK" :
+        featureDropPct >= featureBands.watch ? "WATCH" : "OK";
+
+      const supportFlag =
+        supportHealth < supportBands.critical ? "CRITICAL" :
+        supportHealth < supportBands.high ? "HIGH RISK" :
+        supportHealth < supportBands.watch ? "WATCH" : "OK";
+
+      out.push({
+        account: name,
+        arr: latest.arr,
+        usageDecline: Math.round(usageDecline),
+        featureDropPct: Math.round(featureDropPct),
+        supportHealth: Math.round(supportHealth),
+        churnProb: Math.round(churnProb),
+        tier, usageFlag, featureFlag, supportFlag,
+        action: actionForTier(tier),
+      });
+    });
+    return out
+      .filter(r => !showAtRiskOnly || ["CRITICAL","HIGH RISK"].includes(r.tier))
+      .sort((a,b)=> b.churnProb - a.churnProb);
+  }, [accounts, usageBands, featureBands, supportBands, weights, assumedFinancial, showAtRiskOnly]);
+
+  const totals = useMemo(() => ({
+    critical: rows.filter(r => r.tier === "CRITICAL").length,
+    high: rows.filter(r => r.tier === "HIGH RISK").length,
+    arrAtRisk: rows.filter(r => ["CRITICAL","HIGH RISK"].includes(r.tier))
+                  .reduce((s, r) => s + r.arr, 0),
+  }), [rows]);
+
+  return (
+    <div className="w-full p-6 max-w-7xl mx-auto">
+      {/* your existing controls & cards */}
+      {/* Your Slider rows go here */}
+      <Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
+      <Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
+      <Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
+      <Slider label={`Sentiment (${weights.sentiment}%)`} value={weights.sentiment} onChange={(v)=>setWeights({...weights, sentiment:v})} />
+
 <div className="p-4 rounded-2xl shadow bg-white">
 <h3 className="font-semibold mb-2">Assumptions</h3>
 <Slider label="Assumed Financial Health" value={assumedFinancial} onChange={setAssumedFinancial} />
