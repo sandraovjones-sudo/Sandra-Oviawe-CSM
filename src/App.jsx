@@ -129,7 +129,7 @@ export default function App() {
                 Customer Success Leader who thinks beyond boundaries - then maps the territory, builds the blueprint, and delivers excellence.
               </p>
 
-              <div className="mt-4">
+              <div className="hidden">
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
