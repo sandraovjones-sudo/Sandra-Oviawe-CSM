@@ -16,40 +16,38 @@ export default function CSShowcase() {
   const [isOpen, setIsOpen] = useState(false);
   const iframeRef = useRef(null);
 
-  // Close with ESC
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") closePreview();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const openPreview = (p) => {
     setActive(p);
     setIsOpen(true);
-    document.documentElement.style.overflow = "hidden"; // lock scroll
+    document.documentElement.style.overflow = "hidden";
   };
 
   const closePreview = () => {
     setIsOpen(false);
     setActive(null);
-    document.documentElement.style.overflow = ""; // restore scroll
+    document.documentElement.style.overflow = "";
   };
 
   return (
-    <section id="featured" className="mx-auto max-w-6xl px-4 py-12">
+    <section id="featured" className="mx-auto max-w-7xl px-6 py-12">
       {/* Section Header */}
       <div className="mb-8 grid gap-3">
         <h2 className="text-3xl font-semibold tracking-tight">Featured Projects</h2>
-        <p className="text-stone-600 w-full whitespace-nowrap overflow-hidden text-ellipsis">
-  live workspace demonstrating outcome-led CS in action — 30 days, £/$4.9M ARR, 30+ director-level artefacts.
-</p>
+        <p className="text-stone-600">
+          live workspace demonstrating outcome-led CS in action — 30 days, £/$4.9M ARR, 30+ director-level artefacts.
+        </p>
       </div>
 
       {/* Cards */}
-      <div className="grid gap-6 sm:grid-cols-2 auto-rows-fr">
+      <div className="grid gap-6 grid-cols-1">
         {PROGRAMS.map((p) => (
           <article
             key={p.id}
@@ -74,8 +72,8 @@ export default function CSShowcase() {
                 title={`${p.title} – preview`}
                 src={p.url}
                 loading="lazy"
-                className="h-[320px] w-full border-t border-stone-100"
-                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                className="w-full border-t border-stone-100 h-[420px] md:h-[560px] lg:h-[75vh]"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
               />
               <div className="absolute bottom-3 right-3 flex gap-2">
                 <button
@@ -102,8 +100,7 @@ export default function CSShowcase() {
       {isOpen && active && (
         <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closePreview} />
-
-          <div className="relative z-10 w-full max-w-6xl overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-stone-200">
+          <div className="relative z-10 w-full max-w-7xl overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-stone-200">
             <div className="flex items-center justify-between border-b border-stone-200 px-4 py-3">
               <div className="min-w-0">
                 <h3 className="truncate text-base font-semibold text-stone-900">{active.title}</h3>
@@ -128,18 +125,17 @@ export default function CSShowcase() {
               </div>
             </div>
 
-           <iframe
-  ref={iframeRef}
-  title={`${p.title} – preview`}
-  src={p.url}
-  loading="lazy"
-  className="w-full rounded-b-2xl border-t border-stone-100 h-[380px] md:h-[460px] lg:h-[65vh]"
-  // allow links & new tabs from inside the iframe
-  sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
-/>
+            <iframe
+              key={active.id}
+              title={`${active.title} – full`}
+              src={active.url}
+              className="w-full h-[85vh]"
+              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+            />
           </div>
         </div>
       )}
     </section>
   );
 }
+
