@@ -9,14 +9,6 @@ const PROGRAMS = [
     url: "https://cs-program-site.vercel.app/",
     badge: "Vercel",
   },
-  {
-    id: "academy",
-    title: "Customer Success Leadership Academy",
-    subtitle:
-      "A practical lab hosted on Lovable—playbooks, templates, and tutorials that help customers achieve outcomes, not just adopt features.",
-    url: "https://preview--cs-leader-lab.lovable.app/",
-    badge: "Lovable",
-  },
 ];
 
 export default function CSShowcase() {
@@ -52,7 +44,7 @@ export default function CSShowcase() {
       <div className="mb-8 grid gap-3">
         <h2 className="text-3xl font-semibold tracking-tight">Featured Projects</h2>
         <p className="text-stone-600 w-full whitespace-nowrap overflow-hidden text-ellipsis">
-  Two live workspaces demonstrating outcome-led CS in action — 30 days, £/$4.9M ARR, 30+ director-level artefacts.
+  live workspace demonstrating outcome-led CS in action — 30 days, £/$4.9M ARR, 30+ director-level artefacts.
 </p>
       </div>
 
