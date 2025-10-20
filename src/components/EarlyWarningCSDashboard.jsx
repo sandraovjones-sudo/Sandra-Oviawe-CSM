@@ -1,6 +1,28 @@
 import React, { useMemo, useState } from "react";
-import { motion } from "framer-motion"; // optional if you kept the animation
-import rawData from "@/data/customerHealth.json"; // your real JSON
+import { motion } from "framer-motion";
+import rawData from "@/data/customerHealth.json";
+
+const realData = (Array.isArray(rawData) ? rawData : []).map(r => ({
+  d: r.snapshot_date,
+  a: r.account_name,
+  arr: Number(r.arr),
+  dau: Number(r.dau_percent),
+  feat: Number(r.features_used),
+  tix: Number(r.tickets_30d),
+  res: Number(r.avg_resolution_hrs),
+  csat: Number(r.csat_score),
+  qbr: r.qbr_status
+}));
+
+function groupByAccount(...) { ... }
+function pctChange(...) { ... }
+function badgeClass(...) { ... }
+function actionForTier(...) { ... }
+
+export default function EarlyWarningCSDashboard({ snapshots = realData }) {
+
+return (
+      
 <Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
 <Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
 <Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
