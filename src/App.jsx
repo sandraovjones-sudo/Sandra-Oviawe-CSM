@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import AccountsTable from "./components/AccountsTable";
 import CSShowcase from "./components/CSShowcase";
 import EarlyWarningCSDashboard from "./components/EarlyWarningCSDashboard";
 
@@ -304,13 +303,6 @@ export default function App() {
           <div className="mt-6">
             <EarlyWarningCSDashboard />
           </div>
-
-          {/* ACCOUNTS TABLE */}
-          <div className="mt-8">
-            <h3 className="mb-3 text-lg font-semibold">Accounts (Top 15)</h3>
-            <AccountsTable rows={accounts.slice(0, 15)} />
-          </div>
-        </div>
       </section>
 
       {/* PLAYBOOKS */}
