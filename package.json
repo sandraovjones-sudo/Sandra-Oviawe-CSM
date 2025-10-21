@@ -23,4 +23,6 @@
     "vite": "^5.4.0"
   },
   "engines": { "node": ">=18 <=22" }
+  "export:data": "node scripts/export-customer-health.mjs"
+
 }
