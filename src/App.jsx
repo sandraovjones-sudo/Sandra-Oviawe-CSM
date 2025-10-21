@@ -51,7 +51,8 @@ export default function App() {
       },
       {
         id: "informa-value-comms",
-        title: "Value Communication in Regulated Environments: Informa Datamonitor",
+        title:
+          "Value Communication in Regulated Environments: Informa Datamonitor",
         tags: ["Healthcare", "Enterprise", "Adoption", "Renewals"],
         role: "Customer Success Manager - Datamonitor Healthcare",
         period: "2016–2018",
@@ -223,6 +224,7 @@ export default function App() {
                 London, UK • SaaS • Healthcare • Pharma • Telecom • Enterprise & SMB
               </div>
             </div>
+
             <div className="md:justify-self-end">
               <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm">
                 <h3 className="font-medium text-xl">Signature strengths</h3>
@@ -388,7 +390,9 @@ export default function App() {
       </section>
 
       {/* FEATURED PROJECTS */}
-      <CSShowcase />
+      <section id="featured" className="bg-white">
+        <CSShowcase />
+      </section>
 
       {/* EXPERIENCE */}
       <section id="experience" className="mx-auto max-w-6xl px-6 py-10">
@@ -396,4 +400,88 @@ export default function App() {
         <div className="mt-6 grid gap-4">
           {[
             {
-              role: "
+              role: "Customer Success Manager",
+              org: "BlueJeans by Verizon",
+              when: "2022–2024",
+              blurb:
+                "Owned enterprise relationships, led incident-to-advocacy motions, and drove renewals/expansion through outcomes-first enablement.",
+            },
+            {
+              role: "Account Management / Customer Insights",
+              org: "Informa | Datamonitor Healthcare",
+              when: "2016–2018",
+              blurb:
+                "Supported highly regulated Healthcare clients (incl. Biotech, Medtech and Pharma) with adoption, ROI storytelling, and executive value communication.",
+            },
+          ].map((e) => (
+            <div key={e.org} className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-lg font-medium">
+                  {e.role} — {e.org}
+                </h3>
+                <span className="text-sm text-stone-600">{e.when}</span>
+              </div>
+              <p className="mt-2 text-sm text-stone-700">{e.blurb}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACT / CTA */}
+      <section id="contact" className="border-t border-stone-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <div className="grid gap-6 md:grid-cols-[1.5fr,1fr] items-center">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-semibold">Shall we build something brilliant?</h2>
+              <p className="mt-2 text-stone-600">
+                I’m open to CSM roles (Enterprise/Strategic or Scaled) and CS Ops opportunities. Let’s talk about
+                adoption, renewals, and clever growth.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a
+                  href="/cv.pdf"
+                  className="rounded-2xl bg-stone-900 px-4 py-2 text-stone-50"
+                >
+                  Download CV (PDF)
+                </a>
+                <a
+                  aria-label="Email Sandra at sandra.ov.jones@gmail.com"
+                  href="mailto:sandra.ov.jones@gmail.com"
+                  className="rounded-2xl border border-stone-300 px-4 py-2"
+                >
+                  Email
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sandraovjones/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-2xl border border-stone-300 px-4 py-2"
+                >
+                  Portfolio
+                </a>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5">
+              <h3 className="text-lg font-medium">References & proof</h3>
+              <ul className="mt-2 list-disc pl-5 text-sm text-stone-700">
+                <li>QBR deck samples (sanitised)</li>
+                <li>Success Plan & Playbook templates</li>
+                <li>Journey maps & academy outlines</li>
+                <li>Case study one-pagers</li>
+              </ul>
+              <p className="mt-3 text-xs text-stone-500">Available on request or via private link.</p>
+            </div>
+          </div>
+
+          <p className="mt-8 text-center text-xs text-stone-500">
+            © {new Date().getFullYear()} Sandra Oviawe • Built with a cup of tea and a tidy playbook.
+          </p>
+        </div>
+      </section>
+
+      {/* Vercel Analytics (optional) */}
+      <Analytics />
+    </main>
+  );
+}
