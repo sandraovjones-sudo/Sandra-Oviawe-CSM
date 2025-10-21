@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
-// import { motion } from "framer-motion"; // 🔧 Optional: remove if unused
-import rawData from "@/data/customerHealth.json";
+// JSON import: use a relative path from components → data
+import rawData from "../data/customerHealth.json";
 
 // 1) Adapt MySQL-style keys → compact keys the dashboard uses
-const realData = (Array.isArray(rawData) ? rawData : []).map(r => ({
+const realData = (Array.isArray(rawData) ? rawData : []).map((r) => ({
   d: r.snapshot_date,
   a: r.account_name,
   arr: Number(r.arr),
@@ -12,13 +12,13 @@ const realData = (Array.isArray(rawData) ? rawData : []).map(r => ({
   tix: Number(r.tickets_30d),
   res: Number(r.avg_resolution_hrs),
   csat: Number(r.csat_score),
-  qbr: r.qbr_status
+  qbr: r.qbr_status,
 }));
 
 // 2) Utilities
 function groupByAccount(snaps) {
   const by = new Map();
-  snaps.forEach(r => {
+  snaps.forEach((r) => {
     if (!by.has(r.a)) by.set(r.a, []);
     by.get(r.a).push(r);
   });
@@ -53,25 +53,34 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
   const engagementFromQBR = (qbr) =>
     qbr === "On track" ? 90 : qbr === "Delayed" ? 55 : 25;
 
-  const [usageBands, setUsageBands] = useState({ critical: 50, high: 30, watch: 15 });
-  const [featureBands, setFeatureBands] = useState({ critical: 50, high: 33, watch: 20 });
-  const [supportBands, setSupportBands] = useState({ critical: 40, high: 60, watch: 75 });
+  const [usageBands] = useState({ critical: 50, high: 30, watch: 15 });
+  const [featureBands] = useState({ critical: 50, high: 33, watch: 20 });
+  const [supportBands] = useState({ critical: 40, high: 60, watch: 75 });
   const [weights, setWeights] = useState({
-    usage: 25, feature: 20, support: 20, engagement: 15, financial: 15, sentiment: 5
+    usage: 25,
+    feature: 20,
+    support: 20,
+    engagement: 15,
+    financial: 15,
+    sentiment: 5,
   });
   const [assumedFinancial, setAssumedFinancial] = useState(60);
   const [showAtRiskOnly, setShowAtRiskOnly] = useState(false);
 
   // Local Slider helper
-  const Slider = ({ label, value, min=0, max=100, step=1, onChange }) => (
+  const Slider = ({ label, value, min = 0, max = 100, step = 1, onChange }) => (
     <div className="mb-3">
       <div className="flex justify-between text-sm mb-1">
-        <span className="font-medium">{label}</span><span>{value}</span>
+        <span className="font-medium">{label}</span>
+        <span>{value}</span>
       </div>
       <input
         type="range"
-        min={min} max={max} step={step} value={value}
-        onChange={(e)=>onChange(Number(e.target.value))}
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
         className="w-full"
       />
     </div>
@@ -88,13 +97,18 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
       const prior = hist[idxAgo];
 
       const usageDecline = -pctChange(prior.dau, latest.dau); // positive = decline
-      const featureDropPct = prior.feat ? Math.max(0, (prior.feat - latest.feat) / prior.feat * 100) : 0;
+      const featureDropPct = prior.feat
+        ? Math.max(0, ((prior.feat - latest.feat) / prior.feat) * 100)
+        : 0;
 
       // Support composite (100=great)
       const ticketsNorm = Math.min(100, latest.tix * 5);
       const resNorm = Math.min(100, latest.res);
       const csatGood = Math.max(0, Math.min(100, latest.csat * 20));
-      const supportHealth = Math.max(0, 100 - (ticketsNorm*0.4 + resNorm*0.3 + (100 - csatGood)*0.3));
+      const supportHealth = Math.max(
+        0,
+        100 - (ticketsNorm * 0.4 + resNorm * 0.3 + (100 - csatGood) * 0.3)
+      );
 
       // Risks (0 best → 100 worst)
       const usageRisk = Math.max(0, Math.min(100, usageDecline));
@@ -104,14 +118,14 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
       const financialRisk = 100 - assumedFinancial;
       const sentimentRisk = 100 - csatGood;
 
-      const totalWeight = Object.values(weights).reduce((a,b)=>a+b,0);
+      const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0);
       const churnProb =
-        usageRisk   * (weights.usage / totalWeight) +
-        featRisk    * (weights.feature / totalWeight) +
+        usageRisk * (weights.usage / totalWeight) +
+        featRisk * (weights.feature / totalWeight) +
         supportRisk * (weights.support / totalWeight) +
         engagementRisk * (weights.engagement / totalWeight) +
-        financialRisk  * (weights.financial / totalWeight) +
-        sentimentRisk  * (weights.sentiment / totalWeight);
+        financialRisk * (weights.financial / totalWeight) +
+        sentimentRisk * (weights.sentiment / totalWeight);
 
       let tier = "HEALTHY";
       if (churnProb >= 70) tier = "CRITICAL";
@@ -120,19 +134,31 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
       else if (churnProb >= 15) tier = "LOW RISK";
 
       const usageFlag =
-        usageDecline >= usageBands.critical ? "CRITICAL" :
-        usageDecline >= usageBands.high ? "HIGH RISK" :
-        usageDecline >= usageBands.watch ? "WATCH" : "OK";
+        usageDecline >= usageBands.critical
+          ? "CRITICAL"
+          : usageDecline >= usageBands.high
+          ? "HIGH RISK"
+          : usageDecline >= usageBands.watch
+          ? "WATCH"
+          : "OK";
 
       const featureFlag =
-        featureDropPct >= featureBands.critical ? "CRITICAL" :
-        featureDropPct >= featureBands.high ? "HIGH RISK" :
-        featureDropPct >= featureBands.watch ? "WATCH" : "OK";
+        featureDropPct >= featureBands.critical
+          ? "CRITICAL"
+          : featureDropPct >= featureBands.high
+          ? "HIGH RISK"
+          : featureDropPct >= featureBands.watch
+          ? "WATCH"
+          : "OK";
 
       const supportFlag =
-        supportHealth < supportBands.critical ? "CRITICAL" :
-        supportHealth < supportBands.high ? "HIGH RISK" :
-        supportHealth < supportBands.watch ? "WATCH" : "OK";
+        supportHealth < supportBands.critical
+          ? "CRITICAL"
+          : supportHealth < supportBands.high
+          ? "HIGH RISK"
+          : supportHealth < supportBands.watch
+          ? "WATCH"
+          : "OK";
 
       out.push({
         account: name,
@@ -141,22 +167,38 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
         featureDropPct: Math.round(featureDropPct),
         supportHealth: Math.round(supportHealth),
         churnProb: Math.round(churnProb),
-        tier, usageFlag, featureFlag, supportFlag,
+        tier,
+        usageFlag,
+        featureFlag,
+        supportFlag,
         action: actionForTier(tier),
       });
     });
     return out
-      .filter(r => !showAtRiskOnly || ["CRITICAL","HIGH RISK"].includes(r.tier))
-      .sort((a,b)=> b.churnProb - a.churnProb);
-  }, [accounts, usageBands, featureBands, supportBands, weights, assumedFinancial, showAtRiskOnly]);
+      .filter(
+        (r) => !showAtRiskOnly || ["CRITICAL", "HIGH RISK"].includes(r.tier)
+      )
+      .sort((a, b) => b.churnProb - a.churnProb);
+  }, [
+    accounts,
+    usageBands,
+    featureBands,
+    supportBands,
+    weights,
+    assumedFinancial,
+    showAtRiskOnly,
+  ]);
 
-  const totals = useMemo(() => ({
-    critical: rows.filter(r => r.tier === "CRITICAL").length,
-    high: rows.filter(r => r.tier === "HIGH RISK").length,
-    arrAtRisk: rows
-      .filter(r => ["CRITICAL","HIGH RISK"].includes(r.tier))
-      .reduce((s, r) => s + r.arr, 0),
-  }), [rows]);
+  const totals = useMemo(
+    () => ({
+      critical: rows.filter((r) => r.tier === "CRITICAL").length,
+      high: rows.filter((r) => r.tier === "HIGH RISK").length,
+      arrAtRisk: rows
+        .filter((r) => ["CRITICAL", "HIGH RISK"].includes(r.tier))
+        .reduce((s, r) => s + r.arr, 0),
+    }),
+    [rows]
+  );
 
   // --- Render (everything inside one container)
   return (
@@ -165,20 +207,40 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
       <div className="grid md:grid-cols-2 gap-4 mb-6">
         <div className="p-4 rounded-2xl shadow bg-white">
           <h3 className="font-semibold mb-2">Weights</h3>
-          <Slider label={`Support (${weights.support}%)`} value={weights.support} onChange={(v)=>setWeights({...weights, support:v})} />
-          <Slider label={`Engagement (${weights.engagement}%)`} value={weights.engagement} onChange={(v)=>setWeights({...weights, engagement:v})} />
-          <Slider label={`Financial (${weights.financial}%)`} value={weights.financial} onChange={(v)=>setWeights({...weights, financial:v})} />
-          <Slider label={`Sentiment (${weights.sentiment}%)`} value={weights.sentiment} onChange={(v)=>setWeights({...weights, sentiment:v})} />
+          <Slider
+            label={`Support (${weights.support}%)`}
+            value={weights.support}
+            onChange={(v) => setWeights({ ...weights, support: v })}
+          />
+          <Slider
+            label={`Engagement (${weights.engagement}%)`}
+            value={weights.engagement}
+            onChange={(v) => setWeights({ ...weights, engagement: v })}
+          />
+          <Slider
+            label={`Financial (${weights.financial}%)`}
+            value={weights.financial}
+            onChange={(v) => setWeights({ ...weights, financial: v })}
+          />
+          <Slider
+            label={`Sentiment (${weights.sentiment}%)`}
+            value={weights.sentiment}
+            onChange={(v) => setWeights({ ...weights, sentiment: v })}
+          />
         </div>
 
         <div className="p-4 rounded-2xl shadow bg-white">
           <h3 className="font-semibold mb-2">Assumptions</h3>
-          <Slider label="Assumed Financial Health" value={assumedFinancial} onChange={setAssumedFinancial} />
+          <Slider
+            label="Assumed Financial Health"
+            value={assumedFinancial}
+            onChange={setAssumedFinancial}
+          />
           <label className="inline-flex items-center gap-2 mt-2">
             <input
               type="checkbox"
               checked={showAtRiskOnly}
-              onChange={(e)=>setShowAtRiskOnly(e.target.checked)}
+              onChange={(e) => setShowAtRiskOnly(e.target.checked)}
             />
             Show only at-risk
           </label>
@@ -196,7 +258,9 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
               <div className="text-xs">High Risk</div>
             </div>
             <div className="rounded-xl bg-indigo-50 p-3">
-              <div className="text-2xl font-bold">£{(totals.arrAtRisk/1000).toFixed(0)}k</div>
+              <div className="text-2xl font-bold">
+                £{(totals.arrAtRisk / 1000).toFixed(0)}k
+              </div>
               <div className="text-xs">ARR at risk</div>
             </div>
           </div>
@@ -204,66 +268,78 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
       </div>
 
       {/* Accounts (scrollable) */}
-<div className="rounded-2xl border border-stone-200 shadow bg-white">
-  <div className="max-h-[560px] overflow-y-auto rounded-2xl">
-    <table className="w-full table-fixed">
-      <thead className="sticky top-0 z-10 bg-white">
-        <tr className="text-left text-gray-500 text-xs uppercase">
-          <th className="px-4 py-3 w-[28%]">Account</th>
-          <th className="px-4 py-3 w-[12%] text-right">ARR</th>
-          <th className="px-4 py-3 w-[14%] text-center">Usage Δ30d</th>
-          <th className="px-4 py-3 w-[14%] text-center">Features Δ</th>
-          <th className="px-4 py-3 w-[12%] text-center">Support Score</th>
-          <th className="px-4 py-3 w-[10%] text-center">Churn %</th>
-          <th className="px-4 py-3 w-[10%] text-center">Tier</th>
-          <th className="px-4 py-3">Action</th>
-        </tr>
-      </thead>
+      <div className="rounded-2xl border border-stone-200 shadow bg-white">
+        <div className="max-h-[560px] overflow-y-auto rounded-2xl">
+          <table className="w-full table-fixed">
+            <thead className="sticky top-0 z-10 bg-white">
+              <tr className="text-left text-gray-500 text-xs uppercase">
+                <th className="px-4 py-3 w-[28%]">Account</th>
+                <th className="px-4 py-3 w-[12%] text-right">ARR</th>
+                <th className="px-4 py-3 w-[14%] text-center">Usage Δ30d</th>
+                <th className="px-4 py-3 w-[14%] text-center">Features Δ</th>
+                <th className="px-4 py-3 w-[12%] text-center">Support Score</th>
+                <th className="px-4 py-3 w-[10%] text-center">Churn %</th>
+                <th className="px-4 py-3 w-[10%] text-center">Tier</th>
+                <th className="px-4 py-3">Action</th>
+              </tr>
+            </thead>
 
-      <tbody className="text-sm">
-        {rows.map((r, i) => (
-          <tr
-            key={r.account}
-            className={`border-t hover:bg-gray-50 ${i % 2 ? "bg-white" : "bg-gray-50/40"}`}
-          >
-            {/* Account name with truncation (full on hover) */}
-            <td className="px-4 py-3">
-              <div
-                className="max-w-[260px] truncate font-semibold text-gray-900"
-                title={r.account}
-              >
-                {r.account}
-              </div>
-              <div className="mt-0.5 text-[11px] text-gray-500 truncate">
-                U:{r.usageFlag} • F:{r.featureFlag} • S:{r.supportFlag}
-              </div>
-            </td>
+            <tbody className="text-sm">
+              {rows.map((r, i) => (
+                <tr
+                  key={r.account}
+                  className={`border-t hover:bg-gray-50 ${
+                    i % 2 ? "bg-white" : "bg-gray-50/40"
+                  }`}
+                >
+                  {/* Account name with truncation (full on hover) */}
+                  <td className="px-4 py-3">
+                    <div
+                      className="max-w-[260px] truncate font-semibold text-gray-900"
+                      title={r.account}
+                    >
+                      {r.account}
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-gray-500 truncate">
+                      U:{r.usageFlag} • F:{r.featureFlag} • S:{r.supportFlag}
+                    </div>
+                  </td>
 
-            <td className="px-4 py-3 text-right tabular-nums">£{(r.arr / 1000).toFixed(0)}k</td>
-            <td className="px-4 py-3 text-center tabular-nums">-{r.usageDecline}%</td>
-            <td className="px-4 py-3 text-center tabular-nums">-{r.featureDropPct}%</td>
-            <td className="px-4 py-3 text-center tabular-nums">{r.supportHealth}</td>
-            <td className="px-4 py-3 text-center font-semibold tabular-nums">{r.churnProb}%</td>
-            <td className="px-4 py-3 text-center">
-              <span className={badgeClass(r.tier)}>{r.tier}</span>
-            </td>
-            <td className="px-4 py-3">{r.action}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
+                  <td className="px-4 py-3 text-right tabular-nums">
+                    £{(r.arr / 1000).toFixed(0)}k
+                  </td>
+                  <td className="px-4 py-3 text-center tabular-nums">
+                    -{r.usageDecline}%
+                  </td>
+                  <td className="px-4 py-3 text-center tabular-nums">
+                    -{r.featureDropPct}%
+                  </td>
+                  <td className="px-4 py-3 text-center tabular-nums">
+                    {r.supportHealth}
+                  </td>
+                  <td className="px-4 py-3 text-center font-semibold tabular-nums">
+                    {r.churnProb}%
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    <span className={badgeClass(r.tier)}>{r.tier}</span>
+                  </td>
+                  <td className="px-4 py-3">{r.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Footer */}
       <div className="text-xs text-gray-500 mt-4">
         <p>
-          Model maths: Usage risk uses 30-day DAU% decline; Feature risk uses share of features dropped;
-          Support score = 100 − (Tickets*0.4 + ResolutionHrs*0.3 + (100−CSAT*20)*0.3).
-          Churn % is a weighted blend of all risks + engagement/financial/sentiment assumptions.
+          Model maths: Usage risk uses 30-day DAU% decline; Feature risk uses share of
+          features dropped; Support score = 100 − (Tickets*0.4 + ResolutionHrs*0.3 +
+          (100−CSAT*20)*0.3). Churn % is a weighted blend of all risks +
+          engagement/financial/sentiment assumptions.
         </p>
       </div>
     </div>
   );
 }
-
