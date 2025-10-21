@@ -203,42 +203,57 @@ export default function EarlyWarningCSDashboard({ snapshots = realData }) {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="rounded-2xl overflow-hidden shadow bg-white">
-        <table className="min-w-full">
-          <thead className="bg-gray-50 text-xs uppercase text-gray-500">
-            <tr>
-              <th className="px-4 py-3 text-left">Account</th>
-              <th className="px-4 py-3 text-right">ARR</th>
-              <th className="px-4 py-3 text-center">Usage Δ30d</th>
-              <th className="px-4 py-3 text-center">Features Δ</th>
-              <th className="px-4 py-3 text-center">Support Score</th>
-              <th className="px-4 py-3 text-center">Churn %</th>
-              <th className="px-4 py-3 text-center">Tier</th>
-              <th className="px-4 py-3 text-left">Action</th>
-            </tr>
-          </thead>
-          <tbody className="text-sm">
-            {rows.map((r) => (
-              <tr key={r.account} className="border-t">
-                <td className="px-4 py-3">
-                  <div className="font-semibold">{r.account}</div>
-                  <div className="text-[11px] text-gray-500">
-                    U:{r.usageFlag} • F:{r.featureFlag} • S:{r.supportFlag}
-                  </div>
-                </td>
-                <td className="px-4 py-3 text-right">£{(r.arr/1000).toFixed(0)}k</td>
-                <td className="px-4 py-3 text-center">-{r.usageDecline}%</td>
-                <td className="px-4 py-3 text-center">-{r.featureDropPct}%</td>
-                <td className="px-4 py-3 text-center">{r.supportHealth}</td>
-                <td className="px-4 py-3 text-center font-semibold">{r.churnProb}%</td>
-                <td className="px-4 py-3 text-center"><span className={badgeClass(r.tier)}>{r.tier}</span></td>
-                <td className="px-4 py-3">{r.action}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {/* Accounts (scrollable) */}
+<div className="rounded-2xl border border-stone-200 shadow bg-white">
+  <div className="max-h-[560px] overflow-y-auto rounded-2xl">
+    <table className="w-full table-fixed">
+      <thead className="sticky top-0 z-10 bg-white">
+        <tr className="text-left text-gray-500 text-xs uppercase">
+          <th className="px-4 py-3 w-[28%]">Account</th>
+          <th className="px-4 py-3 w-[12%] text-right">ARR</th>
+          <th className="px-4 py-3 w-[14%] text-center">Usage Δ30d</th>
+          <th className="px-4 py-3 w-[14%] text-center">Features Δ</th>
+          <th className="px-4 py-3 w-[12%] text-center">Support Score</th>
+          <th className="px-4 py-3 w-[10%] text-center">Churn %</th>
+          <th className="px-4 py-3 w-[10%] text-center">Tier</th>
+          <th className="px-4 py-3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody className="text-sm">
+        {rows.map((r, i) => (
+          <tr
+            key={r.account}
+            className={`border-t hover:bg-gray-50 ${i % 2 ? "bg-white" : "bg-gray-50/40"}`}
+          >
+            {/* Account name with truncation (full on hover) */}
+            <td className="px-4 py-3">
+              <div
+                className="max-w-[260px] truncate font-semibold text-gray-900"
+                title={r.account}
+              >
+                {r.account}
+              </div>
+              <div className="mt-0.5 text-[11px] text-gray-500 truncate">
+                U:{r.usageFlag} • F:{r.featureFlag} • S:{r.supportFlag}
+              </div>
+            </td>
+
+            <td className="px-4 py-3 text-right tabular-nums">£{(r.arr / 1000).toFixed(0)}k</td>
+            <td className="px-4 py-3 text-center tabular-nums">-{r.usageDecline}%</td>
+            <td className="px-4 py-3 text-center tabular-nums">-{r.featureDropPct}%</td>
+            <td className="px-4 py-3 text-center tabular-nums">{r.supportHealth}</td>
+            <td className="px-4 py-3 text-center font-semibold tabular-nums">{r.churnProb}%</td>
+            <td className="px-4 py-3 text-center">
+              <span className={badgeClass(r.tier)}>{r.tier}</span>
+            </td>
+            <td className="px-4 py-3">{r.action}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
 
       {/* Footer */}
       <div className="text-xs text-gray-500 mt-4">
