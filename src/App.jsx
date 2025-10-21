@@ -1,12 +1,11 @@
 import React, { useMemo, useState, useEffect } from "react";
+import AccountsTable from "./components/AccountsTable";
 import { Analytics } from "@vercel/analytics/react";
 import CSShowcase from "./components/CSShowcase";
 import EarlyWarningCSDashboard from "./components/EarlyWarningCSDashboard";
-import AccountsTable from "./components/AccountsTable";
+
 
 export default function App() {
- 
-  const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState("");
 
   const projects = useMemo(
@@ -97,7 +96,11 @@ export default function App() {
   }, [projects, query]);
 
   useEffect(() => {
-    const ids = ["projects", "lifecycle", "playbooks", "experience", "dashboard", "featured", "contact"];
+  import("./data/customerHealth.json").then((data) => {
+      setAccounts(data.default);
+    });
+  }, []);
+   const ids = ["projects", "lifecycle", "playbooks", "experience", "dashboard", "featured", "contact"];
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean);
