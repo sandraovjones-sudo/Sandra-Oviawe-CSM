@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import CSShowcase from "./components/CSShowcase";
 import EarlyWarningCSDashboard from "./components/EarlyWarningCSDashboard";
+import AccountsTable from "./components/AccountsTable";
 
 export default function App() {
  
